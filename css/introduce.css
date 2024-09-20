@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+html {
+    height:100%;
+}
+body {
+    height:100%;
+    margin:0;
+    border:0;
+    padding:0;
+    overflow: hidden;
+    z-index: -2;
+}
+.wrap {
+    position:relative;
+    top:0;
+    width:100%;height:100%;
+    transition: 2s;
+    z-index: -2;
+}
+.container {
+    width:100%;height:100%;
+    z-index: -2;
+}
+.container:nth-child(1){background-color: white;}
+.container:nth-child(2){background-color: white;}
+.container:nth-child(3){background-color: white;}
+
+.stick{
+    width: 950px;
+    height: 450px;
+    background-image: url("png/stick.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position :absolute;
+    top : 0px;
+    left: 0%;
+    z-index: -1;
+}
+
+#logo{
+    width: 300px;
+    height: auto;
+    position: absolute;
+    left: 10%;
+    top: 40%;
+}
+
+#big{
+    font-size: 25px;
+    font-family: "Jua", sans-serif;
+    position: absolute;
+    left: 40%;
+    top: 50%;
+}
+
+#small{
+    font-size: 20px;
+    font-family: "Jua", sans-serif;
+    color: rgb(40, 40, 40, 85%);
+    position: absolute;
+    left: 40%;
+    top: 55%;
+}
+
+#logo2{
+    width: 300px;
+    height: auto;
+    position: absolute;
+    right: 10%;
+    top: 120%;
+}
+
+#big2{
+    font-size: 25px;
+    font-family: "Jua", sans-serif;
+    position: absolute;
+    left: 15%;
+    top: 135%;
+}
+
+#small2{
+    font-size: 20px;
+    font-family: "Jua", sans-serif;
+    color: rgb(40, 40, 40, 85%);
+    position: absolute;
+    left: 15%;
+    top: 140%;
+}
+
+#logo3{
+    width: 220px;
+    height: auto;
+    position: absolute;
+    left: 10%;
+    top: 150%;
+}
+
+#big3{
+    font-size: 25px;
+    font-family: "Jua", sans-serif;
+    position: absolute;
+    left: 40%;
+    top: 165%;
+}
+
+#small3{
+    font-size: 20px;
+    font-family: "Jua", sans-serif;
+    color: rgb(40, 40, 40, 85%);
+    position: absolute;
+    left: 40%;
+    top: 170%;
+}
+
+#logo4{
+    width: 300px;
+    height: auto;
+    position: absolute;
+    right: 10%;
+    top: 230%;
+}
+
+#big4{
+    font-size: 25px;
+    font-family: "Jua", sans-serif;
+    position: absolute;
+    left: 15%;
+    top: 240%;
+}
+
+#small4{
+    font-size: 20px;
+    font-family: "Jua", sans-serif;
+    color: rgb(40, 40, 40, 85%);
+    position: absolute;
+    left: 15%;
+    top: 245%;
+}
+
+#logo5{
+    width: 250px;
+    height: auto;
+    position: absolute;
+    left: 15%;
+    top: 265%;
+}
+
+#big5{
+    font-size: 25px;
+    font-family: "Jua", sans-serif;
+    position: absolute;
+    left: 40%;
+    top: 275%;
+}
+
+#small5{
+    font-size: 20px;
+    font-family: "Jua", sans-serif;
+    color: rgb(40, 40, 40, 85%);
+    position: absolute;
+    left: 40%;
+    top: 280%;
+}
+
+.circle3{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    border-radius: 50%;
+    background-color: #d7ecff;
+    box-shadow: 0 0 1000px #b0d9ff;
+    filter: blur(100px);
+    overflow: hidden;
+}
+
+.circle4{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 170%;
+    left: 0px;
+    border-radius: 50%;
+    background-color: #d7ecff;
+    box-shadow: 0 0 1000px #b0d9ff;
+    filter: blur(100px);
+    overflow: hidden;
+}
+
+.circle5{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 200%;
+    right: 0px;
+    border-radius: 50%;
+    background-color: #d7ecff;
+    box-shadow: 0 0 1000px #b0d9ff;
+    filter: blur(100px);
+    overflow: hidden;
+}
+
+.circle6{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 270%;
+    left: 0px;
+    border-radius: 50%;
+    background-color: #d7ecff;
+    box-shadow: 0 0 1000px #b0d9ff;
+    filter: blur(100px);
+    overflow: hidden;
+}
+
+.home{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(255, 255, 255, 0.5);
+    position: absolute;
+    left: 0%;
+    top: 0px;
+    z-index: 0;
+}

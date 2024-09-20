@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #e6f7ff;
+    font-family: "Jua", sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+.signup-form h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.signup-form p {
+    margin-bottom: 20px;
+    color: #777;
+}
+
+.signup-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 43%;
+    margin-right: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-family: "Jua", sans-serif;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-password {
+    position: relative;
+    left: 240px;
+    top: -33px;
+    transform: translateY(-50%); /* 중앙에 위치 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password img {
+    height: 20px; /* 높이 설정 (수정 가능) */
+    width: 40px; /* 너비는 자동으로 설정되어 비율 유지 */
+}
+
+button[type="submit"] {
+    background-color: #53C9FF;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    font-family: "Jua", sans-serif;
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.social-buttons button {
+    width: 32%;
+    padding: 10px;
+    border: 1px solid #53C9FF;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #53C9FF;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+}
+
+.signup-form a {
+    color: #1da1f2;
+    text-decoration: none;
+}
+
+.signup-form a:hover {
+    text-decoration: underline;
+}

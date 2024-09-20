@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+#exit{
+    width: 50px;
+    height: auto;
+    position: absolute;
+    top: 1%;
+    left: 3%;
+}
+
+.Personal_information_box{
+    background-color: white;
+    width: 40%;
+    height: 20%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 15%;
+    left: 3%;
+}
+
+.Personal_information_box > img{
+    width: 12%;
+    height: auto;
+    position: absolute;
+    top: -18%;
+    left: 4%;
+}
+
+.result_box{
+    background-color: white;
+    width: 40%;
+    height: 55%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 42%;
+    left: 3%;
+}
+
+#result{
+    background-color: #6AD0FF;
+    width: 80%;
+    height: 15%;
+    border-radius: 30px;
+    position: absolute;
+    top: -8%;
+    left: 8%;
+    font-family: "Jua", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    box-shadow: 0px 5px 10px 0px rgb(117, 114, 114);
+} 
+
+#more{
+    position: absolute;
+    top: 90%;
+    left: 40%;
+    font-family: "Jua", sans-serif;
+    color: #6AD0FF;
+    font-size: 20px;
+}
+
+.plan_box{
+    background-color: white;
+    width: 50%;
+    height: 89%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 8%;
+    right: 3%;
+}
+
+#plan{
+    background-color: #6AD0FF;
+    width: 70%;
+    height: 8%;
+    border-radius: 30px;
+    position: absolute;
+    top: -5%;
+    left: 17%;
+    font-family: "Jua", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    box-shadow: 0px 5px 10px 0px rgb(117, 114, 114);
+} 
+
+#more2{
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    font-family: "Jua", sans-serif;
+    color: #6AD0FF;
+    font-size: 20px;
+}
+
+.graph_box{
+    background-color: white;
+    width: 90%;
+    height: 55%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 8%;
+    left: 5%;
+}
+
+#graph1 {
+    width: 70px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    top: 5%;
+    left: 6%;
+    border-color: #6AD0FF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.graph2 {
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    top: 5%;
+    left: 18%;
+    border-color: #6AD0FF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+}
+
+#graph3 {
+    width: 80px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    border-color: #6AD0FF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.graph4 {
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    position: absolute;
+    top: 5%;
+    left: 63%;
+    border-color: #6AD0FF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+}
+
+#graph5 {
+    width: 70px;
+    height: 130px;
+    background-color: white;
+    position: absolute;
+    top: 20%;
+    left: 6%;
+    border-color: #6AD0FF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.graph6 {
+    width: 490px;
+    height: 130px;
+    background-color: white;
+    position: absolute;
+    top: 20%;
+    left: 18%;
+    border-color: #6AD0FF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+}
+
+#graph7 {
+    width: 70px;
+    height: 130px;
+    background-color: white;
+    position: absolute;
+    top: 57%;
+    left: 6%;
+    border-color: #6AD0FF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.graph8 {
+    width: 490px;
+    height: 130px;
+    background-color: white;
+    position: absolute;
+    top: 57%;
+    left: 18%;
+    border-color: #6AD0FF;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+}
