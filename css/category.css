@@ -1,32 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 body{
     width: 1920;
     height: 1080;
-    background-color: #FBF0F6;
+    background-color: #FFFFFF;
 }
 
 .circle{
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    bottom: 0;
+    bottom: 0px;
     left: 0px;
+    width: 220px;
+    height: 220px;
+    position: absolute;
     border-radius: 50%;
-    background-color: rgb(252, 212, 159, 0.5);
-    box-shadow: 0 0 1000px rgb(252, 212, 159);
-    filter: blur(30px);
+    background-color: #CFF4FE;
+    box-shadow: 0 0 1000px #CFF4FE;
+    filter: blur(120px);
     overflow: hidden;
 }
 
 .circle2{
-    width: 300px;
-    height: 300px;
-    position: absolute;
     top: 0;
     right: 0px;
+    width: 220px;
+    height: 220px;
+    position: absolute;
     border-radius: 50%;
-    background-color: rgba(252, 190, 240, 0.5);
-    box-shadow: 0 0 1000px rgba(252, 190, 240);
-    filter: blur(30px);
+    background-color: #CFF4FE;
+    box-shadow: 0 0 1000px #CFF4FE;
+    filter: blur(120px);
     overflow: hidden;
 }
 
@@ -48,7 +49,7 @@ body{
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    bottom: 530px;
+    bottom: 540px;
     right: 830px;
 }
 
@@ -66,7 +67,7 @@ body{
 .parent {
     display: flex;
     flex-direction: column;
-    margin-top: 500px;
+    margin-top: 480px;
     margin-left: 450px;
 }
 
@@ -76,14 +77,16 @@ body{
 }
 
 .first > button, .second > button{
+    cursor: pointer;
     text-decoration: none;
     text-align: center;
-    color: #FF90AD;
-    font-size: 24px;
+    color: #68aafa;
+    font-size: 20px;
+    font-family: "Jua", sans-serif;
     width: 280px;
-    height: 80px;
-    background-color: #FECFDF;
-    border-radius: 30px;
+    height: 70px;
+    background-color: #CFF4FE;
+    border-radius: 25px;
     border: 2px solid #ffffff;
     margin-right: 77px;
     margin-bottom: 45px;
@@ -93,13 +96,15 @@ body{
 }
 
 .Submit{
+    cursor: pointer;
     text-decoration: none;
     text-align: center;
-    color: #ECAB61;
-    font-size: 18px;
+    color: #708AF4;
+    font-size: 16px;
+    font-weight: bold;
     width: 100px;
     height: 50px;
-    background-color: #FFDAB9;
+    background-color: #D6DEFF;
     border-radius: 10px;
     border: 2px solid #ffffff;
     margin-right: 77px;
@@ -113,14 +118,15 @@ body{
 .text{
     text-decoration: none;
     text-align: center;
-    color: #FE68B3;
+    color: #1CA7CE;
     font-size: 18px;
+    font-family: "Jua", sans-serif;
     width: 100px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 850px;
-    bottom: 480px;
+    left: 875px;
+    bottom: 490px;
 }
