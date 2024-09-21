@@ -11,13 +11,16 @@ Summary : 서비스 시작 시 대화 카테고리 선택 페이지
     <title>하람</title>
     <link rel="stylesheet" href="/css/category.css" type="text/css">
 </head>
+<script>
+    window.location.href = `mh_static_care_service.html?topic=${value}`;
+</script>
 <body>
     <div class ="circle"></div>
     <div class ="circle2"></div>
     <!-- <div class ="angel"></div> -->
     <div class ="exit"></div>
     <div class ="logo"></div>
-    <form action="">
+    <form>
         <pre class="text">
             이하람님께서 이야기하고 싶은 주제를 골라보세요.
             없어도 괜찮아요!
@@ -25,17 +28,17 @@ Summary : 서비스 시작 시 대화 카테고리 선택 페이지
         </pre>
         <article class="parent"> 
             <article class="first"> 
-                <button>대인관계</button>
-                <button>직장</button>
-                <button>진로</button>
+                <button type="button" onclick="var value = 'relationship';">대인관계</button>
+                <button type="button" onclick="var value = 'rectal';">직장</button>
+                <button type="button" onclick="var value = 'course';">진로</button>
             </article>  
             <article class="second"> 
-                <button>학업</button>
-                <button>가족</button>
-                <button>건강</button>
+                <button type="button" onclick="var value = 'academic';">학업</button>
+                <button type="button" onclick="var value = 'family';">가족</button>
+                <button type="button" onclick="var value = 'health';">건강</button>
             </article> 
         </article>
-        <button type="submit" class="Submit">Submit</button>
+        <button class="Submit" onclick="start();">Submit</button>
     </form>
 </body>
 </html>

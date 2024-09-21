@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function getValue(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    window.onload = function() {
+        const value = getValue('topic');
+        if (selectedTopic) {
+            document.getElementById('result').textContent = `선택한 주제: ${selectedTopic}`;
+        } else {
+            document.getElementById('result').textContent = '선택한 주제가 없습니다.';
+        }
+    }
+</script>
+<body>
+    <p id="result">선택한 주제를 불러오는 중...</p>
+</body>
+</html>
