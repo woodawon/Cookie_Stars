@@ -1,0 +1,126 @@
+body{
+    width: 1920;
+    height: 1080;
+    background-color: #FBF0F6;
+}
+
+.circle{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    border-radius: 50%;
+    background-color: rgb(252, 212, 159, 0.5);
+    box-shadow: 0 0 1000px rgb(252, 212, 159);
+    filter: blur(30px);
+    overflow: hidden;
+}
+
+.circle2{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    right: 0px;
+    border-radius: 50%;
+    background-color: rgba(252, 190, 240, 0.5);
+    box-shadow: 0 0 1000px rgba(252, 190, 240);
+    filter: blur(30px);
+    overflow: hidden;
+}
+
+.angel {
+    width: 230px;
+    height: 360px;
+    background-image: url(/png/angel.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 450px;
+    right: 400px;
+}
+
+.logo {
+    width: 270px;
+    height: 300px;
+    background-image: url(/png/하람로고+하람.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 530px;
+    right: 830px;
+}
+
+.exit {
+    width: 120px;
+    height: 338px;
+    background-image: url(/png/Exit.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 560px;
+    margin-left: 5px;
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 500px;
+    margin-left: 450px;
+}
+
+.first, .second, .Submit{
+    display : flex;
+
+}
+
+.first > button, .second > button{
+    text-decoration: none;
+    text-align: center;
+    color: #FF90AD;
+    font-size: 24px;
+    width: 280px;
+    height: 80px;
+    background-color: #FECFDF;
+    border-radius: 30px;
+    border: 2px solid #ffffff;
+    margin-right: 77px;
+    margin-bottom: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Submit{
+    text-decoration: none;
+    text-align: center;
+    color: #ECAB61;
+    font-size: 18px;
+    width: 100px;
+    height: 50px;
+    background-color: #FFDAB9;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+    margin-right: 77px;
+    margin-bottom: 100px;
+    margin-left: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text{
+    text-decoration: none;
+    text-align: center;
+    color: #FE68B3;
+    font-size: 18px;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 850px;
+    bottom: 480px;
+}
