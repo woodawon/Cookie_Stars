@@ -1,0 +1,1 @@
+window.location.href = 'http://127.0.0.1:5500/html/logined_main.html'; // 메인 페이지로 이동
