@@ -1,3 +1,4 @@
 roharam_chatbot_service.py == 5000
 mh_static_care_service.py == 5100
 login.py == 6000
+register.py == 6100
