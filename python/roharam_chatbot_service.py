@@ -44,7 +44,7 @@ def index():
     return render_template('index.html')
 
 # 채팅 라우트
-@app.route('/chat', methods=['POST'])
+@app.route('/roharam_chat', methods=['POST'])
 def chat():
     user_input = request.json.get('message')
     if not user_input:

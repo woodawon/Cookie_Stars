@@ -14,7 +14,7 @@ Summary : 서비스 시작 시 대화 카테고리 선택 페이지
 <script>
     function send() {
         // Python 서버로 데이터를 전송하는 요청
-        fetch('/receive_data', {
+        fetch('/mh_static_chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,14 +45,14 @@ Summary : 서비스 시작 시 대화 카테고리 선택 페이지
         </pre>
         <article class="parent"> 
             <article class="first"> 
-                <button type="button" onclick="var value = 'relationship';">대인관계</button>
-                <button type="button" onclick="var value = 'rectal';">직장</button>
-                <button type="button" onclick="var value = 'course';">진로</button>
+                <button type="button" onclick="var value = '대인관계';">대인관계</button>
+                <button type="button" onclick="var value = '직장';">직장</button>
+                <button type="button" onclick="var value = '진로';">진로</button>
             </article>  
             <article class="second"> 
-                <button type="button" onclick="var value = 'academic';">학업</button>
-                <button type="button" onclick="var value = 'family';">가족</button>
-                <button type="button" onclick="var value = 'health';">건강</button>
+                <button type="button" onclick="var value = '학업';">학업</button>
+                <button type="button" onclick="var value = '가족';">가족</button>
+                <button type="button" onclick="var value = '건강';">건강</button>
             </article> 
         </article>
         <button class="Submit" onclick="send();">Submit</button>

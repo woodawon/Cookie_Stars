@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageInput.value = '';
 
             // 서버로 메시지 전송
-            fetch('/chat', {
+            fetch('/roharam_chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

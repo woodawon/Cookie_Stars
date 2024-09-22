@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>정신적 건강 지속 관리 대화</title>
+    <link rel="stylesheet" href="/python/static/css/styles.css">
 </head>
-<script>
-    function getValue(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    window.onload = function() {
-        const value = getValue('topic');
-        if (selectedTopic) {
-            document.getElementById('result').textContent = `선택한 주제: ${selectedTopic}`;
-        } else {
-            document.getElementById('result').textContent = '선택한 주제가 없습니다.';
-        }
-    }
-</script>
 <body>
-    <p id="result">선택한 주제를 불러오는 중...</p>
+    <div id="app">
+        <header id="header">
+            <img src="/python/static/images/logo.png" alt="Logo" id="logo">
+            <img src="/python/static/images/exit.png" alt="Exit" id="exit">
+        </header>        
+        <main id="chat-area"></main>
+        <div id="user-input">
+            <textarea id="message-i	nput" placeholder = rows="1"></textarea>
+            <button id="send-btn">submit</button>
+        </div>
+    </div>
+    <script type="module" src="/python/static/js/mh_static_scripts.js"></script>
 </body>
 </html>
