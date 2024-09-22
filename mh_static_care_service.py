@@ -14,6 +14,9 @@ openai.api_key = ''
 # 최대 메시지 수 설정
 msg_cnt = 50
 
+num = 0
+fixed = ''
+
 # 웹 페이지에서 HTML 데이터를 가져와 BeautifulSoup 객체로 변환
 def fetch_html(url):
     response = requests.get(url)
@@ -36,25 +39,21 @@ urls = [
 # 모든 URL의 HTML 데이터를 BeautifulSoup 객체로 변환
 html_contents = [fetch_html(url) for url in urls]
 
-count = 0
-js_variable_value_fixed = ""
-
 # OpenAI GPT-4 API 호출 함수
 def generate_response(prompt, js_variable_value):
-    if count == 0:
-        js_variable_value_fixed = js_variable_value
-
-    count += 1
-
+    global num, fixed  # 전역 변수로 선언
     print("js_variable_value : " , js_variable_value)
-    print("js_variable_value_fixed : " , js_variable_value_fixed)
-
+    if(num == 0):
+        fixed = js_variable_value
+        num += 1
+    print("fixed : " , fixed)
+ 
     msg_history = [
         {"role": "system", "content": "당신은 비약물적 우울증 치료와 멘탈케어를 전문으로 하는 친절한 AI입니다."
          + "사용자의 감정과 고민에 깊이 공감하며, 따뜻한 태도로 응답해 주세요."
          + "비공식적이고 자연스러운 말투를 사용하며, 존중과 이해를 바탕으로 문제를 함께 고민하고 실질적인 조언을 제공하세요."
          + "사용자에게 안전하고 지지적인 환경을 제공하며, 감정을 존중하고 긍정적인 방향으로 대화를 이끌어 주세요."
-         + f"대화 주제를 꼭 인지하여 대화를 진행해주셔야 합니다. 대화 주제는 {js_variable_value} 입니다."},
+         + f"대화 주제를 꼭 인지하여 대화를 진행해주셔야 합니다. 대화 주제는 {fixed} 입니다."},
         {"role": "user", "content": [
             {"type": "text", "text": f"이 문서는 우리 서비스 내용에 관한 문서입니다. 모든 내용을 반드시 읽고 학습해 주시되, 생애주기와 관련된 내용을 반드시 숙지하여 사용자의 정보를 바탕으로 생애주기를 고려한 대화를 할 수 있게 해주세요. (추가 설명 : 사용자의 연령대에 따라 뚜렷한 AI의 답변 차이점이 보이는 말투, 가치관 등의 구성으로 대화해주세요.): {html_contents[0].text}"},
             {"type": "text", "text": f"이 문서들은 비약물학적 우울증 치료에 관한 참고 문서입니다. : {html_contents[5].text}, {html_contents[6].text}"},
