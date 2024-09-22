@@ -12,7 +12,24 @@ Summary : 서비스 시작 시 대화 카테고리 선택 페이지
     <link rel="stylesheet" href="/css/category.css" type="text/css">
 </head>
 <script>
-    window.location.href = `mh_static_care_service.html?topic=${value}`;
+    function send() {
+        // Python 서버로 데이터를 전송하는 요청
+        fetch('/receive_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ variable: value })  // 변수 값을 JSON 형식으로 전송
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response from Python:', data);
+            document.getElementById('result').textContent = `서버에서 받은 응답: ${data.received_value}`;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 </script>
 <body>
     <div class ="circle"></div>
@@ -38,7 +55,7 @@ Summary : 서비스 시작 시 대화 카테고리 선택 페이지
                 <button type="button" onclick="var value = 'health';">건강</button>
             </article> 
         </article>
-        <button class="Submit" onclick="start();">Submit</button>
+        <button class="Submit" onclick="send();">Submit</button>
     </form>
 </body>
 </html>

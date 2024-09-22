@@ -41,7 +41,7 @@ def generate_response(prompt):
 # 기본 라우트
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('mh_static_care_service.html')
 
 # 채팅 라우트
 @app.route('/chat', methods=['POST'])
