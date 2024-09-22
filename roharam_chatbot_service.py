@@ -41,7 +41,7 @@ def generate_response(prompt):
 # 기본 라우트
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('roharam_chatbot_service.html')
 
 # 채팅 라우트
 @app.route('/roharam_chat', methods=['POST'])
@@ -54,4 +54,4 @@ def chat():
 
 # 서버 실행
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)

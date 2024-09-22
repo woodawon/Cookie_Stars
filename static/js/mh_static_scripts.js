@@ -4,9 +4,10 @@ import UserInput from './UserInput.js';
 import { ChatMessage } from './ChatMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const app = document.getElementById('app');
+    let selectedVariable = ''; // 선택된 카테고리를 저장할 변수
 
     // 헤더, 채팅 영역, 사용자 입력을 포함하여 앱 초기화
+    const app = document.getElementById('app');
     app.innerHTML = `${Header()} ${ChatArea()} ${UserInput()}`;
 
     const sendBtn = document.getElementById('send-btn');
@@ -26,13 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
             chatArea.insertAdjacentHTML('beforeend', userMessage);
             messageInput.value = '';
 
-            // 서버로 메시지 전송
+            // 서버로 메시지 전송 (message와 variable 함께 전송)
             fetch('/mh_static_chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message: messageText }),
+                body: JSON.stringify({ message: messageText, variable: selectedVariable }),  // variable도 함께 전송
             })
             .then(response => response.json())
             .then(data => {
@@ -46,10 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollToBottom(); // 스크롤을 아래로 이동
             });
 
-            // 스크롤을 하단으로 이동
             scrollToBottom();
         }
     });
+
+    // 카테고리 선택 시 호출할 함수
+    window.setValue = function (value) {
+        selectedVariable = value;  // 선택된 카테고리 값을 전역 변수에 저장
+    };
 
     exitImg.addEventListener('click', () => {
         window.location.href = 'http://127.0.0.1:5500/html/main.html'; // 메인 페이지로 이동
