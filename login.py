@@ -1,7 +1,6 @@
 import os
 import sqlite3
 from flask import Flask, request, jsonify, render_template
-import openai
 from flask_cors import CORS
 
 # Flask 애플리케이션 생성
@@ -9,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # SQLite3 데이터베이스 파일 경로 설정
-DATABASE = os.path.join('db', 'database.db')
+DATABASE = os.path.join('db', 'C:\\Users\\choro\\cookiestars\\database.db')
 
 # 데이터베이스 초기화 함수
 def init_db():
@@ -18,10 +17,10 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS USERS (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            PASSWORD TEXT NOT NULL,
             NAME TEXT NOT NULL,
             EMAIL TEXT NOT NULL UNIQUE,
-            AGE INTEGER NOT NULL,
-            PASSWORD TEXT NOT NULL
+            AGE INTEGER NOT NULL
         )
     ''')
     conn.commit()
@@ -50,7 +49,12 @@ def login():
     finally:
         conn.close()
 
+
+@app.route('/logined_index')
+def logined_main():
+    return render_template('logined_index.html')
+
 # 서버 실행
 if __name__ == '__main__':
     init_db()  # 데이터베이스 초기화
-    app.run(host='0.0.0.0', port=6000, debug=True)
+    app.run(host='0.0.0.0', port=6200, debug=True)

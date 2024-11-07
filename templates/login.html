@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
-    <link rel="stylesheet" href="/css/login_styles.css">
+    <link href="/static/css/login_styles.css" type="text/css" rel="stylesheet">
 </head>
 <script>
-    const email = document.querySelector("#email");
-    const password = document.querySelector("#password");
-
-    function send() {
-        fetch('http://127.0.0.1:6000/login', {
+    document.querySelector('#loginForm').addEventListener('submit', function(event){
+        event.preventDefault(); 
+        const email = document.querySelector("#email").value;
+        const password = document.querySelector("#password").value;
+        fetch('http://127.0.0.1:6200/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,31 +25,36 @@
             return response.json();
         })
         .then(data => {
-            console.log('Response from Python:', data);
-            window.location.href = 'http://127.0.0.1:6000'; // 여기로 이동
+            if(data.result && data.result.length > 0) {
+                const userName = data.result[0][0];
+                alert('${userName} 하람님, 환영합니다!');
+                window.location.href = '/logined_index';
+            } else {
+                alert("해당 정보에 해당하는 하람님이 존재하지 않습니다. 다시 시도해주세요!");
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
         });
-    }
+    });
 </script>
 <body>
     <div class="circle"></div>
     <div class="circle2"></div>
-    <a href="main.html" class="exit">
-        <img src="/png/Exit.png">
+    <a href="http://127.0.0.1:5500/html/index.html" class="exit">
+        <img src="/static/images/exit.png">
     </a>
     <div class="login-container">
         <h1>로그인</h1>
         <p>아직 계정이 없으시다면 회원 가입을 해주세요!</p>
-        <form>
-            <label id="email", for="email"><strong>이메일</strong></label>
+        <form id="loginForm">
+            <label id="id" for="id"><strong>이메일</strong></label>
             <input type="email" id="email" name="email" required>
             <label id="password" for="password"><strong>비밀번호</strong></label>
             <div class="password-container">
                 <input type="password" id="password" name="password" required>
                 <button type="button" class="toggle-password">
-                    <img src="/png/eye_icon.png" alt="Show/Hide Password">
+                    <img src="/static/images/eye_icon.png" alt="Show/Hide Password">
                 </button>
             </div>
             <small>비밀번호는 숫자, 영문자를 포함한 8글자 이상으로 작성해주세요.</small>
@@ -57,27 +62,27 @@
                 <input type="checkbox" id="remember">
                 <label for="remember">로그인 내용 기억하기</label>
             </div>
-            <button type="submit" class="login-btn" onclick="send();">로그인</button>
+            <button type="submit" class="login-btn">로그인</button>
             <a href="find_password.html" class="forgot-password">비밀번호를 잊어버리셨나요?</a>
         </form>
         <div class="social-login">
             <p><strong>또는 다음 계정으로 로그인 하기:</strong></p>
             <div class="social-buttons">
                 <button class="google-btn">
-                    <img src="/png/google_icon.png" alt="Google">
+                    <img src="/static/images/google_icon.png" alt="Google">
                     Google
                 </button>
                 <button class="apple-btn">
-                    <img src="/png/apple_icon.png" alt="Apple">
+                    <img src="/static/images/apple_icon.png" alt="Apple">
                     Apple
                 </button>
                 <button class="twitter-btn">
-                    <img src="/png/twitter_icon.png" alt="Twitter">
+                    <img src="/static/images/twitter_icon.png" alt="Twitter">
                     Twitter
                 </button>
             </div>
         </div>
-        <p class="signup-prompt">아직 계정이 없으신가요? <a href="register.html">회원가입 하기!</a></p>
+        <p class="signup-prompt">아직 계정이 없으신가요? <a href="http://127.0.0.1:6100">회원가입 하기!</a></p>
     </div>
 </body>
 </html>

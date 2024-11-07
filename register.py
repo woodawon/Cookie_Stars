@@ -1,18 +1,14 @@
 import os
 import sqlite3
 from flask import Flask, request, jsonify, render_template
-import openai
 from flask_cors import CORS
 
 # Flask 애플리케이션 생성
 app = Flask(__name__)
 CORS(app)
 
-# OpenAI API 키 설정
-openai.api_key = ''
-
 # SQLite3 데이터베이스 파일 경로 설정
-DATABASE = os.path.join('db', 'database.db')
+DATABASE = os.path.join('db', 'C:\\Users\\choro\\cookiestars\\database.db')
 
 # 데이터베이스 초기화 함수
 def init_db():
@@ -21,10 +17,10 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS USERS (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            PASSWORD TEXT NOT NULL,
             NAME TEXT NOT NULL,
             EMAIL TEXT NOT NULL UNIQUE,
-            AGE INTEGER NOT NULL,
-            PASSWORD TEXT NOT NULL
+            AGE INTEGER NOT NULL
         )
     ''')
     conn.commit()
@@ -35,14 +31,14 @@ def index():
     return render_template('register.html')
 
 # 회원가입 라우트
-@app.route('/membership', methods=['POST'])
+@app.route('/register', methods=['POST'])
 def signup():
     data = request.json
     if not data:
         return jsonify({"status": "error", "error": "잘못된 요청입니다."}), 400  # 빈 요청 처리
 
     name = data.get("name")
-    birthdate = data.get("birthdate")
+    birthdate = data.get("age")
     email = data.get("email")
     password = data.get("password")
 
@@ -56,13 +52,12 @@ def signup():
         
         # 데이터 삽입
         cursor.execute('''
-            INSERT INTO USERS (ID, NAME, EMAIL, AGE, PASSWORD)
+            INSERT INTO USERS (PASSWORD, NAME, EMAIL, AGE)
             VALUES (?, ?, ?, ?)
         ''', (name, birthdate, email, password))
         
         conn.commit()  # 변경사항 저장
-
-        return jsonify({"status": "success", "message": "회원가입 성공!"}), 201  # 성공 메시지
+        return jsonify({"status": "success", "result": "회원가입 성공!"}), 201  # 성공 메시지
 
     except sqlite3.IntegrityError:
         return jsonify({"status": "error", "error": "이미 등록된 이메일입니다."}), 400
