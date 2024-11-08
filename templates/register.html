@@ -6,36 +6,6 @@
     <title>회원가입</title>
     <link href="/static/css/register.css" type="text/css" rel="stylesheet">
 </head>
-<script>
-    document.querySelector('#registerForm').addEventListener('submit', function(event){
-        const age = document.querySelector("#age");
-        const name = document.querySelector("#name");
-        const email = document.querySelector("#email");
-        const password = document.querySelector("#password");
-
-        fetch('http://127.0.0.1:6100/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email, password: password, name: name, age: age })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const success = data.result[0][0];
-            alert(success);
-            window.location.href = 'http://127.0.0.1:6200'; // 로그인 화면으로 이동
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    });
-</script>
 <body>
     <div class="container">
         <div class="signup-form">
@@ -43,12 +13,12 @@
             <p>저희의 하루님이 되어주세요!</p>
             <form id="registerForm">
                 <div class="input-group">
-                    <input type="text" id="name" placeholder="이름">
-                    <input type="text" id="age" placeholder="나이 (예시 : 20)">
+                    <input type="text" id="name" placeholder="이름" required>
+                    <input type="text" id="age" placeholder="나이 (예시 : 20)" required>
                 </div>
-                <input type="email" id="email" placeholder="이메일">
+                <input type="email" id="email" placeholder="이메일" required>
                 <div class="password-group">
-                    <input type="password" id="password" placeholder="비밀번호">
+                    <input type="password" id="password" placeholder="비밀번호" required>
                     <button type="button" class="toggle-password">
                         <img src="/png/eye_icon.png" alt="눈">
                     </button>
@@ -64,5 +34,49 @@
             <p><a href="login.html">이미 계정이 있으신가요?</a></p>
         </div>
     </div>
+
+    <script>
+        document.querySelector('#registerForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // 폼 제출 시 새로고침 방지
+
+            const age = document.querySelector("#age").value;
+            const name = document.querySelector("#name").value;
+            const email = document.querySelector("#email").value;
+            const password = document.querySelector("#password").value;
+
+            // 간단한 비밀번호 검증: 숫자와 영문자 혼합 확인 (선택 사항)
+            const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordPattern.test(password)) {
+                alert("비밀번호는 숫자와 영문자가 포함된 8자 이상이어야 합니다.");
+                return;
+            }
+
+            fetch('http://127.0.0.1:6100/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email, password: password, name: name, age: age })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('회원가입이 완료되었습니다!');
+                    window.location.replace('http://127.0.0.1:6200'); // 로그인 화면으로 이동
+                } else {
+                    alert(data.error || "회원가입에 실패했습니다.");
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert("서버 오류가 발생했습니다. 다시 시도해주세요.");
+            });
+        });
+    </script>
 </body>
 </html>

@@ -38,12 +38,12 @@ def signup():
         return jsonify({"status": "error", "error": "잘못된 요청입니다."}), 400  # 빈 요청 처리
 
     name = data.get("name")
-    birthdate = data.get("age")
+    age = data.get("age")
     email = data.get("email")
     password = data.get("password")
 
     # 유효성 검사
-    if not all([name, birthdate, email, password]):
+    if not all([name, age, email, password]):
         return jsonify({"status": "error", "error": "모든 필드를 입력해 주세요."}), 400
 
     try:
@@ -54,10 +54,13 @@ def signup():
         cursor.execute('''
             INSERT INTO USERS (PASSWORD, NAME, EMAIL, AGE)
             VALUES (?, ?, ?, ?)
-        ''', (name, birthdate, email, password))
+        ''', (password, name, email, age))
         
         conn.commit()  # 변경사항 저장
-        return jsonify({"status": "success", "result": "회원가입 성공!"}), 201  # 성공 메시지
+
+        response = jsonify({"status" : "success"})
+        response.headers['Content-Type'] = 'application/json'
+        return response, 201  # 성공 메시지
 
     except sqlite3.IntegrityError:
         return jsonify({"status": "error", "error": "이미 등록된 이메일입니다."}), 400

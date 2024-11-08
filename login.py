@@ -31,11 +31,11 @@ def index():
     return render_template('login.html')
 
 # 로그인 정보가 사용자 DB와 일치하는지 확인
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['POST'])
 def login():
     data = request.json
-    email = data.get("email")
-    password = data.get("password")
+    email = data.get("email").strip()
+    password = data.get("password").strip()
     try:
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
