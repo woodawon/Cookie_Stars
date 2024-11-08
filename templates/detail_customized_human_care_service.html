@@ -12,14 +12,22 @@
             <img src="/static/images/logo.png" alt="Logo" id="logo">
             <img src="/static/images/exit.png" alt="Exit" id="exit">
         </header>
-        <div class="qna_chatbot">
-            <main id="chat-area"></main>
-            <div id="user-input">
-                <textarea id="message-input" rows="1"></textarea>
-                <button id="send-btn">submit</button>
-            </div>
-        </div>       
-    </div>
+        <main id="chat-area"></main>
+        <div id="user-input">
+            <textarea id="message-input" rows="1"></textarea>
+            <button id="send-btn">submit</button>
+        </div>  
+    </div>   
+    <form id="graph">
+        <p id="p_keyword">주제</p>
+        <input type="text" name="keyword" id="keyword" />
+        <p id="p_title">제목</p>
+        <input type="text" name="title" id="title" />
+        <p id="p_content">설계</p>
+        <input type="text" name="content" id="content" />
+        <p id="p_reason">이유</p>
+        <input type="text" name="reason" id="reason" />
+    </form>
     <script type="module" src="/static/js/detail_mh_static_scripts.js"></script>
 </body>
 </html>
