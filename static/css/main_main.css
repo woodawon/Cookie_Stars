@@ -28,7 +28,7 @@ body {
 .stick {
     width: 950px;
     height: 450px;
-    background-image: url("png/stick.png");
+    background-image: url("/static/images/stick.png");
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
