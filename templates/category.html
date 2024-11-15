@@ -16,7 +16,7 @@
     }
 
     function send() {
-        fetch('http://127.0.0.1:5100/mh_static_chat', {
+        fetch('http://127.0.0.1:5200/mh_static_chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -31,7 +31,7 @@
         })
         .then(data => {
             console.log('Response from Python:', data);
-            window.location.href = 'http://127.0.0.1:5100'; // 여기로 이동
+            window.location.href = 'http://127.0.0.1:5200'; // 여기로 이동
         })
         .catch((error) => {
             console.error('Error:', error);

@@ -10,9 +10,8 @@
 </head>
 <script>
 function goLogin() {
-    const login = document.querySelector(".login");
     alert("로그인을 해주시면 사용하실 수 있어요!");
-    login.focus();
+    location.href = 'http://127.0.0.1:6200';
 }
 </script>
 <body>
@@ -51,16 +50,16 @@ function goLogin() {
                     <img src="/static/images/moon.png" alt="달">
                     </a>
                     <article class="menubar2">
-                        <a id="mental" href="/templates/category.html"> <!--프로세스 완료-->
+                        <a id="mental" href="#" onclick="goLogin();"> <!--프로세스 완료-->
                             <p>멘탈 헬스 스테틱 케어 서비스</p>
                         </a>
-                        <a id="detail" href="/templates/detail_customized_human_care_service.html">
+                        <a id="detail" href="#" onclick="goLogin();">
                             <p>디테일 맞춤형 휴먼 케어 서비스</p>
                         </a>
-                        <a id="health" href="/templates/mh_examine_service.html">
+                        <a id="health" href="#" onclick="goLogin();">
                             <p>멘탈 헬스 진단 서비스</p>
                         </a>
-                        <a id="chatbot" href="http://127.0.0.1:5000"> <!--프로세스 완료-->
+                        <a id="chatbot" href="#" onclick="goLogin();"> <!--프로세스 완료-->
                             <p>로하람 챗봇 서비스</p>
                         </a>
                     </article>
@@ -76,7 +75,7 @@ function goLogin() {
                     </a>
                 </article>
                 <article class="mypage">  
-                    <a href="/templates/mypage.html" onclick="goLogin();">
+                    <a href="#" onclick="goLogin();">
                     <img src="/static/images/User.png" alt="사용자">
                     </a>    
                 </article>

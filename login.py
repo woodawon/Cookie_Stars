@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # SQLite3 데이터베이스 파일 경로 설정
-DATABASE = os.path.join('db', 'C:\\Users\\choro\\cookiestars\\database.db')
+DATABASE = os.path.join('db', 'C:\\Users\\MASTER\\cookiestars\\database.db')
 
 # 데이터베이스 초기화 함수
 def init_db():

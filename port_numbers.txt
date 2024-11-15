@@ -1,4 +1,4 @@
-roharam_chatbot_service.py == 5000
-mh_static_care_service.py == 5100
-login.py == 6000
-register.py == 6100
+roharam_chatbot_service.py == 5100
+mh_static_care_service.py == 5200
+login.py == 6100
+register.py == 6200
