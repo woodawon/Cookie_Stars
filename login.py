@@ -16,17 +16,16 @@ DATABASE = os.path.join("db", "C:\\Users\\MASTER\\cookiestars\\database.db")
 def init_db():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
-    cursor.execute(
-        """
+    cursor.execute('''
         CREATE TABLE IF NOT EXISTS USERS (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
             PASSWORD TEXT NOT NULL,
             NAME TEXT NOT NULL,
             EMAIL TEXT NOT NULL UNIQUE,
-            AGE INTEGER NOT NULL
+            AGE INTEGER NOT NULL,
+            GENDER TEXT NOT NULL
         )
-    """
-    )
+    ''')
     conn.commit()
     conn.close()
 
@@ -52,12 +51,18 @@ def login():
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
         cursor.execute(
-            """SELECT NAME FROM USERS WHERE EMAIL=? AND PASSWORD=?""", (email, password)
+            """SELECT NAME, EMAIL, AGE, GENDER FROM USERS WHERE EMAIL=? AND PASSWORD=?""", (email, password)
         )
         user = cursor.fetchone()
         if user:
-            session["user"] = user[0]  # 세션에 로그인 정보 저장
-            return jsonify({"result": user}), 200
+            # 세션에 로그인 정보 저장
+            session["user"] = {
+                "name" : user[0],
+                "email" : user[1],
+                "age" : user[2],
+                "gender" : user[3],
+            }
+            return jsonify({"result": user[0]}), 200
         else:
             return jsonify({"result": "이메일 또는 비밀번호가 잘못되었습니다."}), 401
     except Exception as e:
@@ -70,7 +75,7 @@ def login():
 def logined_index():
     if "user" in session:
         user = session["user"]
-        return render_template("logined_index.html", user=user)
+        return render_template("logined_index.html", user=user["name"])
     return redirect(url_for("index"))  # index 함수 호출
 
 
@@ -83,7 +88,10 @@ def logout():
 
 @app.route("/mypage")
 def user():
-    return render_template("mypage.html")
+    if "user" in session:
+        user = session["user"]
+        return render_template("mypage.html", user=user)
+    return redirect(url_for("index"))
 
 
 # 서버 실행

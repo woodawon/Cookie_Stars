@@ -20,7 +20,8 @@ def init_db():
             PASSWORD TEXT NOT NULL,
             NAME TEXT NOT NULL,
             EMAIL TEXT NOT NULL UNIQUE,
-            AGE INTEGER NOT NULL
+            AGE INTEGER NOT NULL,
+            GENDER TEXT NOT NULL
         )
     ''')
     conn.commit()
@@ -41,6 +42,7 @@ def signup():
     age = data.get("age")
     email = data.get("email")
     password = data.get("password")
+    gender = data.get("gender")
 
     # 유효성 검사
     if not all([name, age, email, password]):

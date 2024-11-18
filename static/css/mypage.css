@@ -243,3 +243,57 @@
     border-width: 1px;
     border-radius: 15px;
 }
+
+#t_name {
+    position: absolute;
+    top: 37%;
+    left: 8%;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    font-size: 20px;
+}
+
+#name {
+    position: absolute;
+    top: 37%;
+    left: 15%;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    font-size: 20px;
+}
+
+#t_email {
+    position: absolute;
+    top: 55%;
+    left: 8%;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    font-size: 20px;
+}
+
+#email {
+    position: absolute;
+    top: 55%;
+    left: 17%;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    font-size: 20px;
+}
+
+#t_etc {
+    position: absolute;
+    top: 73%;
+    left: 8%;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    font-size: 20px;
+}
+
+#etc {
+    position: absolute;
+    top: 73%;
+    left: 20%;
+    font-family: "Jua", sans-serif;
+    color: #3C9EFF;
+    font-size: 20px;
+}

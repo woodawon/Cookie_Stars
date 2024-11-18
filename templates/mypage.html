@@ -15,6 +15,12 @@
     </a>
     <article class="Personal_information_box">
         <img id="mypage" src="/static/images/mypage.png">
+        <p id="t_name">이름 : </p>
+        <p id="name">{{ user['name'] }}</p>
+        <p id="t_email">이메일 : </p>
+        <p id="email">{{ user['email'] }}</p>
+        <p id="t_etc">나이/성별 : </p>
+        <p id="etc">{{ user['age'] }} / {{ user['gender'] }}</p>
     </article>
     <article class="result_box">
         <p id="result">멘탈 헬스 그래프 결과</p>
