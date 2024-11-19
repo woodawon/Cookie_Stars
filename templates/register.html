@@ -12,9 +12,10 @@
             <h1>회원가입</h1>
             <p>저희의 하루님이 되어주세요!</p>
             <form id="registerForm">
+                <input type="text" id="name" placeholder="이름" required>
                 <div class="input-group">
-                    <input type="text" id="name" placeholder="이름" required>
                     <input type="text" id="age" placeholder="나이 (예시 : 20)" required>
+                    <input type="text" id="gender" placeholder="성별 (예시 : 남/여)" required>
                 </div>
                 <input type="email" id="email" placeholder="이메일" required>
                 <div class="password-group">
@@ -43,6 +44,7 @@
             const name = document.querySelector("#name").value;
             const email = document.querySelector("#email").value;
             const password = document.querySelector("#password").value;
+            const gender = document.querySelector("#gender").value;
 
             // 간단한 비밀번호 검증: 숫자와 영문자 혼합 확인 (선택 사항)
             const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -56,7 +58,7 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email: email, password: password, name: name, age: age })
+                body: JSON.stringify({ email: email, password: password, name: name, age: age, gender: gender })
             })
             .then(response => {
                 if (!response.ok) {

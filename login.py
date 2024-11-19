@@ -9,7 +9,7 @@ CORS(app)
 app.secret_key = ""  # 세션 데이터를 암호화하기 위한 키
 
 # SQLite3 데이터베이스 파일 경로 설정
-DATABASE = os.path.join("db", "C:\\Users\\MASTER\\cookiestars\\database.db")
+DATABASE = os.path.join("db", "C:\\Users\\choro\\cookiestars\\database.db")
 
 
 # 데이터베이스 초기화 함수
@@ -44,9 +44,6 @@ def login():
     email = data.get("email").strip()
     password = data.get("password").strip()
 
-    # 해당 email과 password에 해당하는 사용자 정보를
-    # sqlite로 뽑아서 세션에 저장하는 코드 작성할 것
-
     try:
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
@@ -75,7 +72,7 @@ def login():
 def logined_index():
     if "user" in session:
         user = session["user"]
-        return render_template("logined_index.html", user=user["name"])
+        return render_template("logined_index.html", user=user)
     return redirect(url_for("index"))  # index 함수 호출
 
 

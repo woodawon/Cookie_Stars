@@ -88,9 +88,8 @@
               return response.json();
             })
             .then((data) => {
-              if (data.result && data.result.length > 0) {
-                const userName = data.result[0][0];
-                alert(userName + " 하람님, 환영합니다!");
+              if (data.result) {
+                alert(data.result + " 하람님, 환영합니다!");
                 window.location.href = "http://127.0.0.1:6200/logined_index";
               } else {
                 alert(

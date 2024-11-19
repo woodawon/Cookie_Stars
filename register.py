@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # SQLite3 데이터베이스 파일 경로 설정
-DATABASE = os.path.join('db', 'C:\\Users\\MASTER\\cookiestars\\database.db')
+DATABASE = os.path.join('db', 'C:\\Users\\choro\\cookiestars\\database.db')
 
 # 데이터베이스 초기화 함수
 def init_db():
@@ -54,9 +54,9 @@ def signup():
         
         # 데이터 삽입
         cursor.execute('''
-            INSERT INTO USERS (PASSWORD, NAME, EMAIL, AGE)
-            VALUES (?, ?, ?, ?)
-        ''', (password, name, email, age))
+            INSERT INTO USERS (PASSWORD, NAME, EMAIL, AGE, GENDER)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (password, name, email, age, gender))
         
         conn.commit()  # 변경사항 저장
 
