@@ -22,10 +22,10 @@ body {
 .container:nth-child(1){background-color: white;}
 .container:nth-child(2){background-color: white;}
 .container:nth-child(3){background-color: white;}
-.container:nth-child(4){background-color: red;}
-.container:nth-child(5){background-color: blue;}
-.container:nth-child(6){background-color: gray;}
-.container:nth-child(7){background-color: purple;}
+.container:nth-child(4){background-color: white;}
+.container:nth-child(5){background-color: white;}
+.container:nth-child(6){background-color: white;}
+.container:nth-child(7){background-color: white;}
 
 .two_section > .title{
     width: 350px;
@@ -52,6 +52,7 @@ body {
    position: absolute;
    top: 28%;
    left: 25%; 
+   z-index: 4;
 }
 
 #logo{
@@ -61,6 +62,25 @@ body {
     top: 110%;
     left: 45%;
     opacity : 0.5;
+}
+
+.title {
+    width: 350px;
+    height: 55px;
+    position: absolute;
+    top: 15%;
+    right: 40%;
+    background-color: #6AD0FF;
+    border: 3px;
+    border-radius: 15px;
+    box-shadow: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: "Jua", sans-serif;
+    font-size: 15px;
 }
 
 #friendship1{
@@ -162,7 +182,7 @@ body {
     font-size: 20px;
 }
 
-.recommend{
+.friendship_recommend{
     background-color: white;
     width: 35%;
     height: 70%;
@@ -175,7 +195,7 @@ body {
     right: 5%;
 }
 
-.recommend1 > p{
+.friendship_recommend1 > p{
     background-color: white;
     width: 80%;
     height: 25%;
@@ -195,7 +215,7 @@ body {
     padding-left: 5%;
 }
 
-.recommend2{
+.friendship_recommend2{
     background-color: white;
     width: 80%;
     height: 23%;
@@ -208,7 +228,7 @@ body {
     left: 10%;
 }
 
-.recommend2 > #small{
+.friendship_recommend2 > #small{
     background-color: white;
     width: 80%;
     height: 20%;
@@ -224,7 +244,7 @@ body {
     padding-left: 1%;
 }
 
-.recommend2 > #big{
+.friendship_recommend2 > #big{
     background-color: #FFB9DC;
     width: 94%;
     height: 50%;
@@ -241,7 +261,7 @@ body {
     font-size: 25px;
 }
 
-.recommend3{
+.friendship_recommend3{
     background-color: white;
     width: 80%;
     height: 30%;
@@ -254,7 +274,7 @@ body {
     left: 10%;
 }
 
-.recommend3 > #small{
+.friendship_recommend3 > #small{
     background-color: white;
     width: 90%;
     height: 20%;
@@ -270,7 +290,7 @@ body {
     padding-left: 1%;
 }
 
-.recommend3 > #big{
+.friendship_recommend3 > #big{
     background-color: #D997FF;
     width: 90%;
     height: 60%;
@@ -287,7 +307,1333 @@ body {
     font-size: 25px;
 }
 
-.recommend3 > #big > img{
+.friendship_recommend3 > #big > img{
     width: 70%;
     height: auto;
+}
+
+#finish {
+    position: absolute;
+    top: 17%;
+    right: 5%;
+    width: 10%;
+    height: 15%;
+
+}
+
+#tutorial {
+    display: flex;
+    background-color: #BFB6B6;
+    opacity : 0.8;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+
+#box_finish {
+    background-color: #86d9ff;
+    border-radius: 50%;
+    filter: blur(30px);
+    width: 100%;
+    height: 80%;
+    z-index: 3;
+    position: absolute;
+    top: -7%;
+}
+
+#img_finish {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    top: 0%;
+    right: 30%;
+}
+
+#p_finish {
+    background-color: white;
+    border-radius: 50px;
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    top: 70%;
+    right: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    font-size: 100%;
+    border-width: 1%;
+}
+
+#tutorial_open {
+    position: absolute;
+    top: 17%;
+    right: 5%;
+    width: 10%;
+    height: 15%;
+
+}
+
+#box_tutorial_open {
+    background-color: #86d9ff;
+    border-radius: 50%;
+    filter: blur(30px);
+    width: 100%;
+    height: 80%;
+    z-index: 3;
+    position: absolute;
+    top: -7%;
+}
+
+#img_tutorial_open {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    top: 0%;
+    right: 30%;
+    z-index: 5;
+}
+
+#p_tutorial_open {
+    background-color: white;
+    border-radius: 50px;
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    top: 70%;
+    right: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    font-size: 100%;
+    border-width: 1%;
+}
+
+#talk1 {
+    background-color: #3fc2ff;
+    color: white;
+    border-radius: 4px;
+    width: 35%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    position: absolute;
+    top: 18%;
+    left: 5%;
+    font-size: 15px;
+    z-index: 7;
+    opacity: 1;
+}
+
+#highlight1 {
+    background-color: yellow;
+    opacity: 0.3;
+    z-index: 8;
+    width: 53%;
+    height: 70%;
+    position: absolute;
+    top: 25%;
+    left: 23%;
+    z-index: 5;
+}
+
+#logo2{
+    width: 100px;
+    height: auto;
+    position: absolute;
+    top: 210%;
+    left: 45%;
+    opacity : 0.5;
+}
+
+#work1{
+    background-color: white;
+    width: 20%;
+    height: 10%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 220%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Jua", sans-serif;
+    color: #2294FF;
+    font-size: 25px;
+}
+
+#work2{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 235%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #5FB2FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#work3{
+    background-color: white;
+    width: 40%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 255%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#work4{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 275%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D684FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#title2{
+    width: 350px;
+    height: 55px;
+    position: absolute;
+    top: 215%;
+    right: 10%;
+    background-color: #6AD0FF;
+    border: 3px;
+    border-radius: 15px;
+    box-shadow: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: "Jua", sans-serif;
+    font-size: 20px;
+}
+
+.work_recommend{
+    background-color: white;
+    width: 35%;
+    height: 70%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 225%;
+    right: 5%;
+}
+
+.work_recommend1 > p{
+    background-color: white;
+    width: 80%;
+    height: 25%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #3FC3FF;
+    font-size: 25px;
+    padding-left: 5%;
+}
+
+.work_recommend2{
+    background-color: white;
+    width: 80%;
+    height: 23%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.work_recommend2 > #small{
+    background-color: white;
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.work_recommend2 > #big{
+    background-color: #FFB9DC;
+    width: 94%;
+    height: 50%;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.work_recommend3{
+    background-color: white;
+    width: 80%;
+    height: 30%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 63%;
+    left: 10%;
+}
+
+.work_recommend3 > #small{
+    background-color: white;
+    width: 90%;
+    height: 20%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D997FF;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.work_recommend3 > #big{
+    background-color: #D997FF;
+    width: 90%;
+    height: 60%;
+    border-radius: 10px;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.work_recommend3 > #big > img{
+    width: 80%;
+    height: auto;
+    z-index: 5;
+}
+
+#logo3{
+    width: 100px;
+    height: auto;
+    position: absolute;
+    top: 310%;
+    left: 45%;
+    opacity : 0.5;
+}
+
+#study1{
+    background-color: white;
+    width: 20%;
+    height: 10%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 320%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Jua", sans-serif;
+    color: #2294FF;
+    font-size: 25px;
+}
+
+#study2{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 335%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #5FB2FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#study3{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 355%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#study4{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 375%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D684FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#title3{
+    width: 350px;
+    height: 55px;
+    position: absolute;
+    top: 315%;
+    right: 10%;
+    background-color: #6AD0FF;
+    border: 3px;
+    border-radius: 15px;
+    box-shadow: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: "Jua", sans-serif;
+    font-size: 20px;
+}
+
+.study_recommend{
+    background-color: white;
+    width: 35%;
+    height: 70%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 325%;
+    right: 5%;
+}
+
+.study_recommend1 > p{
+    background-color: white;
+    width: 80%;
+    height: 25%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #3FC3FF;
+    font-size: 25px;
+    padding-left: 5%;
+}
+
+.study_recommend2{
+    background-color: white;
+    width: 80%;
+    height: 23%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.study_recommend2 > #small{
+    background-color: white;
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.study_recommend2 > #big{
+    background-color: #FFB9DC;
+    width: 94%;
+    height: 50%;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.study_recommend3{
+    background-color: white;
+    width: 80%;
+    height: 30%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 63%;
+    left: 10%;
+}
+
+.study_recommend3 > #small{
+    background-color: white;
+    width: 90%;
+    height: 20%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D997FF;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.study_recommend3 > #big{
+    background-color: #D997FF;
+    width: 90%;
+    height: 60%;
+    border-radius: 10px;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.study_recommend3 > #big > img{
+    width: 80%;
+    height: auto;
+    z-index: 5;
+}
+
+#logo4{
+    width: 100px;
+    height: auto;
+    position: absolute;
+    top: 410%;
+    left: 45%;
+    opacity : 0.5;
+}
+
+#title4{
+    width: 350px;
+    height: 55px;
+    position: absolute;
+    top: 415%;
+    right: 10%;
+    background-color: #6AD0FF;
+    border: 3px;
+    border-radius: 15px;
+    box-shadow: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: "Jua", sans-serif;
+    font-size: 20px;
+}
+
+#family1{
+    background-color: white;
+    width: 20%;
+    height: 10%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 420%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Jua", sans-serif;
+    color: #2294FF;
+    font-size: 25px;
+}
+
+#family2{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 435%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #5FB2FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#family3{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 455%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#family4{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 475%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D684FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+.family_recommend{
+    background-color: white;
+    width: 35%;
+    height: 70%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 425%;
+    right: 5%;
+}
+
+.family_recommend1 > p{
+    background-color: white;
+    width: 80%;
+    height: 25%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #3FC3FF;
+    font-size: 25px;
+    padding-left: 5%;
+}
+
+.family_recommend2{
+    background-color: white;
+    width: 80%;
+    height: 23%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.family_recommend2 > #small{
+    background-color: white;
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.family_recommend2 > #big{
+    background-color: #FFB9DC;
+    width: 94%;
+    height: 50%;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.family_recommend3{
+    background-color: white;
+    width: 80%;
+    height: 30%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 63%;
+    left: 10%;
+}
+
+.family_recommend3 > #small{
+    background-color: white;
+    width: 90%;
+    height: 20%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D997FF;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.family_recommend3 > #big{
+    background-color: #D997FF;
+    width: 90%;
+    height: 60%;
+    border-radius: 10px;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.family_recommend3 > #big > img{
+    width: 80%;
+    height: auto;
+    z-index: 5;
+}
+
+#logo5{
+    width: 100px;
+    height: auto;
+    position: absolute;
+    top: 510%;
+    left: 45%;
+    opacity : 0.5;
+}
+
+#title5{
+    width: 350px;
+    height: 55px;
+    position: absolute;
+    top: 515%;
+    right: 10%;
+    background-color: #6AD0FF;
+    border: 3px;
+    border-radius: 15px;
+    box-shadow: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: "Jua", sans-serif;
+    font-size: 20px;
+}
+
+#health1{
+    background-color: white;
+    width: 20%;
+    height: 10%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 520%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Jua", sans-serif;
+    color: #2294FF;
+    font-size: 25px;
+}
+
+#health2{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 535%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #5FB2FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#health3{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 555%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#health4{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 575%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D684FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+.health_recommend{
+    background-color: white;
+    width: 35%;
+    height: 70%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 525%;
+    right: 5%;
+}
+
+.health_recommend1 > p{
+    background-color: white;
+    width: 80%;
+    height: 25%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #3FC3FF;
+    font-size: 25px;
+    padding-left: 5%;
+}
+
+.health_recommend2{
+    background-color: white;
+    width: 80%;
+    height: 23%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.health_recommend2 > #small{
+    background-color: white;
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.health_recommend2 > #big{
+    background-color: #FFB9DC;
+    width: 94%;
+    height: 50%;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.health_recommend3{
+    background-color: white;
+    width: 80%;
+    height: 30%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 63%;
+    left: 10%;
+}
+
+.health_recommend3 > #small{
+    background-color: white;
+    width: 90%;
+    height: 20%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D997FF;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.health_recommend3 > #big{
+    background-color: #D997FF;
+    width: 90%;
+    height: 60%;
+    border-radius: 10px;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.health_recommend3 > #big > img{
+    width: 70%;
+    height: auto;
+    z-index: 5;
+}
+
+#logo6{
+    width: 100px;
+    height: auto;
+    position: absolute;
+    top: 610%;
+    left: 45%;
+    opacity : 0.5;
+}
+
+#title6{
+    width: 350px;
+    height: 55px;
+    position: absolute;
+    top: 615%;
+    right: 10%;
+    background-color: #6AD0FF;
+    border: 3px;
+    border-radius: 15px;
+    box-shadow: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-family: "Jua", sans-serif;
+    font-size: 20px;
+}
+
+#job1{
+    background-color: white;
+    width: 20%;
+    height: 10%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 620%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Jua", sans-serif;
+    color: #2294FF;
+    font-size: 25px;
+}
+
+#job2{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 635%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #5FB2FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#job3{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 655%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+#job4{
+    background-color: white;
+    width: 35%;
+    height: 15%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 675%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D684FF;
+    font-size: 25px;
+    padding-left: 1%;
+}
+
+.job_recommend{
+    background-color: white;
+    width: 35%;
+    height: 70%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:2px;
+    border-radius: 10px;
+    position: absolute;
+    top: 625%;
+    right: 5%;
+}
+
+.job_recommend1 > p{
+    background-color: white;
+    width: 80%;
+    height: 25%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #3FC3FF;
+    font-size: 25px;
+    padding-left: 5%;
+}
+
+.job_recommend2{
+    background-color: white;
+    width: 80%;
+    height: 23%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+}
+
+.job_recommend2 > #small{
+    background-color: white;
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #FFB9DC;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.job_recommend2 > #big{
+    background-color: #FFB9DC;
+    width: 94%;
+    height: 50%;
+    border-radius: 10px;
+    position: absolute;
+    top: 40%;
+    left: 3%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.job_recommend3{
+    background-color: white;
+    width: 80%;
+    height: 30%;
+    border-color: #6AD0FF;
+    border-style:solid;
+    border-width:1px;
+    border-radius: 10px;
+    position: absolute;
+    top: 63%;
+    left: 10%;
+}
+
+.job_recommend3 > #small{
+    background-color: white;
+    width: 90%;
+    height: 20%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-family: "Jua", sans-serif;
+    color: #D997FF;
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.job_recommend3 > #big{
+    background-color: #D997FF;
+    width: 90%;
+    height: 60%;
+    border-radius: 10px;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Jua", sans-serif;
+    color: white;
+    font-size: 25px;
+}
+
+.job_recommend3 > #big > img{
+    width: 70%;
+    height: auto;
+    z-index: 5;
 }

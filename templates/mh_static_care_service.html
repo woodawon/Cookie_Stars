@@ -19,5 +19,44 @@
         </div>
     </div>
     <script type="module" src="/static/js/mh_static_scripts.js"></script>
+
+    <article id="tutorial_open">
+        <div id="box_tutorial_open"></div>
+        <img id="img_tutorial_open" src="/static/images/finish_tutorial.png" alt="finish">
+        <button id="p_tutorial_open">튜토리얼 열기!</button>
+    </article>
+
+    <div id="tutorial">
+        <div class="chat-box">
+            <div class="message1">안녕하세요, 하람님. 🍀</div>
+            <div class="message2">안녕..</div>
+            <div class="message3">하람님께서는 어떤 일이 있으셨을까요?</div>
+            <div class="message4">저는 하람님께서 힘드시지 않도록 최선을 다합니다!</div>
+            <div class="message5">직장 상사때문에 힘들어..</div>
+            <div class="message6">하람님께서 어떤 감정을 느끼셨나요?</div>
+        </div>
+        <p id="talk1">하람이와 부담없이 대화해보세요 🥰</p>
+        <div id="highlight1"></div>
+
+        <div id="finish">
+            <div id="box_finish"></div>
+            <img id="img_finish" src="/static/images/finish_tutorial.png" alt="finish">
+            <button id="p_finish">튜토리얼 완료!</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("p_finish").addEventListener("click", function () {
+            const tutorialDiv = document.getElementById("tutorial");
+            tutorialDiv.style.display = "none"; // 튜토리얼 창 숨기기
+        });
+    </script>
+
+    <script>
+        document.getElementById("tutorial_open").addEventListener("click", function () {
+            const tutorialDiv = document.getElementById("tutorial");
+            tutorialDiv.style.display = "block"; // 튜토리얼 창 숨기기
+        });
+    </script>
 </body>
 </html>

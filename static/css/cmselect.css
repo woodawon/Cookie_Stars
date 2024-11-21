@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+body{
+    width: 1920;
+    height: 1080;
+    background-color: #FFFFFF;
+}
+
+.circle{
+    bottom: 0px;
+    left: 0px;
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #CFF4FE;
+    box-shadow: 0 0 1000px #CFF4FE;
+    filter: blur(120px);
+    overflow: hidden;
+}
+
+.circle2{
+    top: 0;
+    right: 0px;
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #CFF4FE;
+    box-shadow: 0 0 1000px #CFF4FE;
+    filter: blur(120px);
+    overflow: hidden;
+}
+
+.angel {
+    width: 230px;
+    height: 360px;
+    background-image: url(/static/images/angel.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 450px;
+    right: 400px;
+}
+
+.logo {
+    width: 270px;
+    height: 300px;
+    background-image: url(/static/images/하람로고+하람.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 540px;
+    right: 830px;
+}
+
+.exit {
+    width: 120px;
+    height: 338px;
+    background-image: url(/static/images/Exit.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 560px;
+    margin-left: 5px;
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 480px;
+    margin-left: 450px;
+}
+
+.first, .Submit{
+    display : flex;
+
+}
+
+.first > button{
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: #68aafa;
+    font-size: 20px;
+    font-family: "Jua", sans-serif;
+    width: 280px;
+    height: 70px;
+    background-color: #CFF4FE;
+    border-radius: 25px;
+    border: 2px solid #ffffff;
+    margin-right: 77px;
+    margin-bottom: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Submit{
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: #708AF4;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    background-color: #D6DEFF;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+    margin-right: 77px;
+    margin-bottom: 100px;
+    margin-left: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text{
+    text-decoration: none;
+    text-align: center;
+    color: #1CA7CE;
+    font-size: 18px;
+    font-family: "Jua", sans-serif;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 875px;
+    bottom: 490px;
+}
