@@ -4,6 +4,14 @@ from bs4 import BeautifulSoup
 import requests
 from flask_cors import CORS
 
+###
+# - 추가 작업 사항 -
+# : 대화 카테고리 선택한 뒤 대화 시작
+# -> 멘탈 헬스 진단 대화 진행
+# -> 특정 단어 입력 시 대화 종료 시키고, 결과 뽑아주는 거 만들어야 함 
+# ==> 그 결과를 저장한 뒤 볼 수 있게 해주는 (= 멘탈 헬스 진단 결과) DB도 새로 짜야 한다.
+# ###
+
 # Flask 애플리케이션 생성
 app = Flask(__name__)
 CORS(app)
