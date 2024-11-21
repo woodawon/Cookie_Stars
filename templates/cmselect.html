@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>하람</title>
-    <link rel="stylesheet" href="/static/css/category.css">
+    <link rel="stylesheet" href="/static/css/cmselect.css">
 </head>
 <script>
     var value = '';
@@ -16,52 +17,80 @@
     }
 
     function send() {
-        fetch('http://127.0.0.1:5200/mh_static_chat', {
+        fetch('http://127.0.0.1:5000/roharam_chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ message: "대화 주제가 선택되었습니다.", variable: value })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Response from Python:', data);
-            window.location.href = 'http://127.0.0.1:5200'; // 여기로 이동
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response from Python:', data);
+                window.location.href = 'http://127.0.0.1:5000'; // 여기로 이동
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 </script>
+
 <body>
     <div class="circle"></div>
     <div class="circle2"></div>
-    <div class="exit"></div>
-    <div class="logo"></div>
+    <a id="exit" href="#">
+        <img src="/static/images/exit.png" alt="exit"></div>
+    </a>
+    <img id="logo" src="/static/images/하람로고+하람.png" alt="logo"></div>
     <form>
         <pre class="text">
-            하람님께서 이야기하고 싶은 주제를 골라보세요.
-            없어도 괜찮아요!
-            버튼을 눌러 다음으로 넘어가볼까요?
+            하람님께 끌리는 대화를 선택해볼까요?
+            부담 없이 포근한 대화를 하실 수 있을 거에요. 😉
         </pre>
-        <article class="parent"> 
-            <article class="first"> 
-                <button type="button" onclick="setValue('대인관계');">대인관계</button>
-                <button type="button" onclick="setValue('직장');">직장</button>
-                <button type="button" onclick="setValue('진로');">진로</button>
-            </article>  
-            <article class="second"> 
-                <button type="button" onclick="setValue('학업');">학업</button>
-                <button type="button" onclick="setValue('가족');">가족</button>
-                <button type="button" onclick="setValue('건강');">건강</button>
-            </article> 
+        <article class="parent">
+            <article class="first">
+                <button type="button" id="first" onclick="setValue('핑크피치');">핑크피치 비타민</button>
+                <button type="button" id="second" onclick="setValue('연고');">연고 비타민</button>
+            </article>
         </article>
         <button type="button" class="Submit" onclick="send();">Submit</button>
     </form>
+
+    <article id="tutorial_open">
+        <div id="box_tutorial_open"></div>
+        <img id="img_tutorial_open" src="/static/images/finish_tutorial.png" alt="finish">
+        <button id="p_tutorial_open">튜토리얼 열기!</button>
+    </article>
+
+    <div id="tutorial">
+        <div id="finish">
+            <div id="box_finish"></div>
+            <img id="img_finish" src="/static/images/finish_tutorial.png" alt="finish">
+            <button id="p_finish">튜토리얼 완료!</button>
+        </div>
+        <p id="talk1">핑크피치 비타민 대화를 하고싶으시군요! 😉</p>
+        <p id="talk2">대화를 시작해볼까요?</p>
+        <div id="highlight1"></div>
+        <div id="highlight2"></div>
+    </div>
+
+    <script>
+        document.getElementById("p_finish").addEventListener("click", function () {
+            const tutorialDiv = document.getElementById("tutorial");
+            tutorialDiv.style.display = "none"; // 튜토리얼 창 숨기기
+        });
+    </script>
+
+    <script>
+        document.getElementById("tutorial_open").addEventListener("click", function () {
+            const tutorialDiv = document.getElementById("tutorial");
+            tutorialDiv.style.display = "block"; // 튜토리얼 창 숨기기
+        });
+    </script>
 </body>
 </html>

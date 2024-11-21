@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 body{
-    width: 1920;
-    height: 1080;
+    width: 100%;
+    height: 100%;
     background-color: #FFFFFF;
 }
 
@@ -31,68 +31,88 @@ body{
     overflow: hidden;
 }
 
-.angel {
-    width: 230px;
-    height: 360px;
-    background-image: url(/static/images/angel.png);
+#angel {
+    width: 10;
+    height: auto;
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    bottom: 450px;
-    right: 400px;
+    top: 20%;
+    right: 20%;
 }
 
-.logo {
-    width: 270px;
-    height: 300px;
-    background-image: url(/static/images/하람로고+하람.png);
+#logo {
+    width: 15%;
+    height: auto;
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    bottom: 540px;
-    right: 830px;
+    top: 5%;
+    right: 40%;
 }
 
-.exit {
-    width: 120px;
-    height: 338px;
-    background-image: url(/static/images/Exit.png);
+#exit {
+    width: 30%;
+    height: auto;
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    bottom: 560px;
-    margin-left: 5px;
+    top: 3%;
+    left: 2%;
+    z-index: 5;
 }
 
 .parent {
     display: flex;
     flex-direction: column;
-    margin-top: 480px;
-    margin-left: 450px;
+    position: absolute;
+    top: 55%;
+    left: 28%;
 }
 
-.first, .Submit{
+.first, .second, .Submit{
     display : flex;
 
 }
 
-.first > button{
+#first {
     cursor: pointer;
     text-decoration: none;
     text-align: center;
-    color: #68aafa;
+    color: #FFF9FB;
     font-size: 20px;
     font-family: "Jua", sans-serif;
     width: 280px;
     height: 70px;
-    background-color: #CFF4FE;
+    background-color: #FFACBD;
     border-radius: 25px;
-    border: 2px solid #ffffff;
+    border: none;
     margin-right: 77px;
     margin-bottom: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 4;
+}
+
+#second {
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: #739B78;
+    font-size: 20px;
+    font-family: "Jua", sans-serif;
+    width: 280px;
+    height: 70px;
+    background-color: #DFEEC7;
+    border-radius: 25px;
+    border: none;
+    margin-right: 77px;
+    margin-bottom: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
 }
 
 .Submit{
@@ -106,13 +126,14 @@ body{
     height: 50px;
     background-color: #D6DEFF;
     border-radius: 10px;
-    border: 2px solid #ffffff;
-    margin-right: 77px;
-    margin-bottom: 100px;
-    margin-left: 900px;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    bottom: 5%;
+    right: 45%;
+    z-index: 4;
 }
 
 .text{
@@ -121,12 +142,171 @@ body{
     color: #1CA7CE;
     font-size: 18px;
     font-family: "Jua", sans-serif;
-    width: 100px;
-    height: 50px;
+    width: 90%;
+    height: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 875px;
-    bottom: 490px;
+    top: 25%;
+    right: 5%;
+}
+
+#finish {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    width: 10%;
+    height: 15%;
+
+}
+
+#tutorial {
+    display: flex;
+    background-color: #BFB6B6;
+    opacity : 0.8;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+
+#box_finish {
+    background-color: #86d9ff;
+    border-radius: 50%;
+    filter: blur(30px);
+    width: 100%;
+    height: 80%;
+    z-index: 3;
+    position: absolute;
+    top: -7%;
+}
+
+#img_finish {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    top: 0%;
+    right: 30%;
+    z-index: 5;
+}
+
+#p_finish {
+    background-color: white;
+    border-radius: 50px;
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    top: 70%;
+    right: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    font-size: 100%;
+    border-width: 1%;
+}
+
+#tutorial_open {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    width: 10%;
+    height: 15%;
+
+}
+
+#box_tutorial_open {
+    background-color: #86d9ff;
+    border-radius: 50%;
+    filter: blur(30px);
+    width: 100%;
+    height: 80%;
+    z-index: 3;
+    position: absolute;
+    top: -7%;
+}
+
+#img_tutorial_open {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    top: 0%;
+    right: 30%;
+    z-index: 5;
+}
+
+#p_tutorial_open {
+    background-color: white;
+    border-radius: 50px;
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    top: 70%;
+    right: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    font-size: 100%;
+    border-width: 1%;
+}
+
+#talk1 {
+    background-color: #7ed1f8;
+    color: white;
+    border-radius: 4px;
+    width: 25%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    position: absolute;
+    top: 40%;
+    left: 14%;
+    font-size: 15px;
+    z-index: 5;
+}
+
+#highlight1 {
+    background-color: yellow;
+    opacity: 0.3;
+    z-index: 8;
+    width: 22%;
+    height: 12%;
+    position: absolute;
+    top: 54%;
+    left: 27%;
+    z-index: 50;
+}
+
+#talk2 {
+    background-color: #7ed1f8;
+    color: white;
+    border-radius: 4px;
+    width: 13%;
+    height: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Jua", sans-serif;
+    position: absolute;
+    top: 78%;
+    left: 45%;
+    font-size: 15px;
+    z-index: 5;
+}
+
+#highlight2 {
+    background-color: #FCEE76;
+    opacity: 0.5;
+    width: 9%;
+    height: 10%;
+    position: absolute;
+    bottom: 3%;
+    right: 44%;
+    z-index: 100;
 }
