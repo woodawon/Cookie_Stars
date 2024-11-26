@@ -1,15 +1,17 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, session, jsonify, render_template
 import openai
 from bs4 import BeautifulSoup
 import requests
 from flask_cors import CORS
+import os
+import sqlite3
 
 ###
 # - 추가 작업 사항 -
-# : 대화 카테고리 선택한 뒤 대화 시작
-# -> 멘탈 헬스 진단 대화 진행
-# -> 특정 단어 입력 시 대화 종료 시키고, 결과 뽑아주는 거 만들어야 함 
-# ==> 그 결과를 저장한 뒤 볼 수 있게 해주는 (= 멘탈 헬스 진단 결과) DB도 새로 짜야 한다.
+# 프롬프트 엔지니어링을 chatgpts에 만든 걸 여기에 링크 말고, 쌩으로 가져와서 적용시키자.
+# 적용 시키고, 해당 chatgpts 프롬프트 엔지니어링된 내용 직접 테스트 해보고, 
+# 테스트 한 거 url 공유로 혹시 모르니 url 학습에도 한 개 추가해보면 좋을듯. 
+# 이렇게만 하고 나서 테스트 돌리고 버그 수정해서 완료하면 됨.
 # ###
 
 # Flask 애플리케이션 생성
@@ -18,6 +20,7 @@ CORS(app)
 
 # OpenAI API 키 설정
 openai.api_key = ""
+app.secret_key = ""  # 세션 데이터를 암호화하기 위한 키
 
 # 최대 메시지 수 설정
 # msg_cnt = 50
@@ -25,6 +28,27 @@ openai.api_key = ""
 num = 0
 fixed = ""
 exit_count = 0  # AI 응답 횟수가 25번이 되었을 때, 서비스 종료
+
+# SQLite3 데이터베이스 파일 경로 설정
+DATABASE = os.path.join('db', 'C:\\Users\\choro\\cookiestars\\database.db')
+
+# 데이터베이스 초기화 함수
+def init_db():
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor() 
+    cursor.execute(''' 
+        CREATE TABLE IF NOT EXISTS TEST (
+            EMAIL TEXT NOT NULL UNIQUE,
+            RELATIONSHIP INTEGER NOT NULL,
+            RECTAL INTEGER NOT NULL,
+            ACADEMIC INTEGER NOT NULL,
+            FAMILY INTEGER NOT NULL,
+            HEALTH INTEGER NOT NULL,
+            COURSE INTEGER NOT NULL
+        )
+    ''')
+    conn.commit()
+    conn.close()
 
 
 # 웹 페이지에서 HTML 데이터를 가져와 BeautifulSoup 객체로 변환
@@ -49,7 +73,6 @@ urls = [
 
 # 모든 URL의 HTML 데이터를 BeautifulSoup 객체로 변환
 html_contents = [fetch_html(url) for url in urls]
-
 
 # OpenAI GPT-4 API 호출 함수
 def generate_response(prompt, js_variable_value):

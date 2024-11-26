@@ -17,7 +17,7 @@ def init_db():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute('''
-        CREATE TABLE IF NOT EXISTS USERS (
+        CREATE TABLE IF NOT EXISTS USER (
             ID INTEGER PRIMARY KEY AUTOINCREMENT,
             PASSWORD TEXT NOT NULL,
             NAME TEXT NOT NULL,
