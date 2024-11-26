@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="/static/css/category.css">
 </head>
 <script>
-    var value = '';
-    function setValue(str) {
-        if (value !== str) {
-            value = str;
-            window.setValue(value);  // 선택된 값을 전역 변수로 설정
+    var selectedValues = []; // 선택된 값들을 저장할 배열
+
+    function toggleValue(str) {
+        const index = selectedValues.indexOf(str);
+        if (index > -1) {
+            selectedValues.splice(index, 1); // 이미 선택된 값이면 배열에서 제거
+        } else {
+            selectedValues.push(str); // 선택되지 않은 값이면 배열에 추가
         }
+        console.log("Current selected values:", selectedValues);
     }
 
     function send() {
@@ -22,7 +26,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message: "대화 주제가 선택되었습니다.", variable: value })
+            body: JSON.stringify({ message: "대화 주제가 선택되었습니다.", variables: selectedValues })
         })
             .then(response => {
                 if (!response.ok) {
@@ -55,14 +59,14 @@
         </pre>
         <article class="parent">
             <article class="first">
-                <button type="button" onclick="setValue('대인관계');">대인관계</button>
-                <button type="button" onclick="setValue('직장');">직장</button>
-                <button type="button" onclick="setValue('진로');">진로</button>
+                <button type="button" onclick="toggleValue('대인관계');">대인관계</button>
+                <button type="button" onclick="toggleValue('직장');">직장</button>
+                <button type="button" onclick="toggleValue('진로');">진로</button>
             </article>
             <article class="second">
-                <button type="button" onclick="setValue('학업');">학업</button>
-                <button type="button" onclick="setValue('가족');">가족</button>
-                <button type="button" onclick="setValue('건강');">건강</button>
+                <button type="button" onclick="toggleValue('학업');">학업</button>
+                <button type="button" onclick="toggleValue('가족');">가족</button>
+                <button type="button" onclick="toggleValue('건강');">건강</button>
             </article>
         </article>
         <button type="button" class="Submit" onclick="send();">Submit</button>
