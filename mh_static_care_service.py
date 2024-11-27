@@ -1,22 +1,11 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, session, jsonify, render_template
 import openai
 from bs4 import BeautifulSoup
 import requests
 from flask_cors import CORS
 import os
 import sqlite3
-
-###
-# - 추가 작업 사항 -
-# 프롬프트 엔지니어링을 chatgpts에 만든 걸 여기에 링크 말고, 쌩으로 가져와서 적용시키자.
-# 적용 시키고, 해당 chatgpts 프롬프트 엔지니어링된 내용 직접 테스트 해보고, 
-# 테스트 한 거 url 공유로 혹시 모르니 url 학습에도 한 개 추가해보면 좋을듯. 
-# 이렇게만 하고 나서 DB 추가해서 완성하고 테스트 돌리고 버그 수정해서 완료하면 됨.
-# ###
-
-# *(sample)*
-# 대화 주제 : 대인 관계, 학업
-# 사용자 정보 : 이름 : 이수혁, 성별 : 남성, 나이 : 16
+import json
 
 # Flask 애플리케이션 생성
 app = Flask(__name__)
@@ -54,7 +43,7 @@ def fetch_html(url):
 
 # 다양한 자료를 가져오는 URL 리스트
 urls = [
-    "https://chatgpt.com/g/g-67373a6580308190b9654fa37a95540e-mental-helseu-jindan-seobiseu-mental-helseu-seutaetig",
+    "https://chatgpt.com/share/67466ab5-f474-800b-9f91-7b6cb93a970a",
     "https://drive.google.com/file/d/1Iy1WzIoMI-CvfUlxsLkKFmG3Nglw847L/view?usp=sharing"
 ]
 
@@ -65,15 +54,35 @@ html_contents = [fetch_html(url) for url in urls]
 def generate_response(prompt, categories):
     # 다중 카테고리를 하나의 문자열로 변환
     categories_text = ", ".join(categories)
+    email = session.get('user', {}).get('email')
+
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+        cursor.execute(
+            """SELECT NAME, AGE, GENDER FROM USERS WHERE EMAIL=?""", (email)
+        )
+        user = cursor.fetchone()
+    except Exception as e:
+        return jsonify({"status": "error", "error": f"DB 오류 발생: {str(e)}"}), 500
+    finally:
+        conn.close()
 
     msg_history = [
         {
             "role": "system",
-            "content": "당신은 비약물적 우울증 치료와 멘탈케어를 전문으로 하는 친절한 AI입니다."
-            + "사용자의 감정과 고민에 깊이 공감하며, 따뜻한 태도로 응답해 주세요."
-            + "비공식적이고 자연스러운 말투를 사용하며, 존중과 이해를 바탕으로 문제를 함께 고민하고 실질적인 조언을 제공하세요."
-            + "사용자에게 안전하고 지지적인 환경을 제공하며, 감정을 존중하고 긍정적인 방향으로 대화를 이끌어 주세요."
-            + f"대화 주제를 꼭 인지하여 대화를 진행해주셔야 합니다. 선택된 대화 주제: {categories_text}."
+            "content": "1.  아이, 청소년, 20~30대, 40~50대, 노인까지 나누어서 해당 생애 주기의 사람마다 존중 받도록 느끼게 말을 하며 멘탈 헬스 진단을 해주면 돼." 
+                     + "max token = 150으로, 약 150자 내외로 모든 말들을 해주면 돼. 중요한 건, 문장을 150자보다 더 많이 생성했는데, 토큰은 150으로 제한되어 있다 보니까 문장을 그냥 잘라버리는 경우가 아닌, 150자 내외로 모든 말이 다 끝나게 대화를 해줘야 한다는 거야. 또한, 150으로 설정을 했다고 해서, 이 숫자를 의식하여 억지로 글을 더 많이 생성할 필요도 없어. 150자를 넘지 말라는 거지, 글이 더 적은 것 등은 괜찮아."
+                     + "2. 카테고리에 따라 관련된 질문을 해야 해. 대인 관계, 직장, 학업, 가족, 건강, 진로 중에서 사용자는 원하는 만큼 선택할 것이고 GPT는 선택한 것에 관련된 질문과 답변을 해줘. 추가적으로 현실적인 해결 방안보다는 상대방을 이해하고 대안을 스스로 찾을 수 있도록 하는 것에 초점을 맞춰줘. 그리고 정말 중요한 것은, 대화가 시작될 때 사용자가 어떤 카테고리를 선택했는지, 그리고 사용자에 대한 정보가 입력 예시처럼 무조껀 너에게 사용자 프롬프트에 입력되어 전송될 거라는 거야. 입력 예시처럼 전송된 값을 보고, 선택된 카테고리와 관련된 멘탈 헬스 진단을 해주면 돼. 입력 예시는 다음과 같아."
+                     + "입력 예시 : "
+                     + "대화 주제 : 대인 관계, 직장, 학업, 가족, 건강, 진로"
+                     + "사용자 정보 : 이름 : 김민선, 성별 : 여성, 나이 : 30"
+                     + "3. 10~20번 정도 대화를 진행하면서 일정 수준 검사를 해주고, 사용자가 '대화 종료' 라고 치기 전까지는 대화를 끝내지 말고 더 진행하며 검사해주면 돼."
+                     + " 사용자가 선택한 카테고리의 멘탈 헬스 수치를 %로 측정해주면 되고, 추가로 사용자의 마음 온도와 마음 건강도 %로 측정해주면 돼. 사용자가 대답한 글들을 바탕으로 감정을 분석하면서 종합적인 수치 계산 후 측정해주면 돼. 스트레스를 받는 수치에 따라 0~100%까지 '마음 건강' 수치 측정, 행복도의 수치에 따라 0~100%까지 '마음 온도' 수치 측정을 하면 돼. 정말 중요한 것은, 이 대화가 끝날 때 너가 보내주는 결과값을 코드로 퍼센트만 뽑아갈 예정이기 때문에, 사용자가 '대화 종료' 라고 입력했다면 그 어떤 사족도 붙이지 말고 무조껀 종료 시의 출력 예시대로만 답해야 한다는 거야. 출력 예시는 다음과 같아."
+                     + "출력 예시 : [ '대인 관계' : 30 , '직장' : 45, '학업' : 33, '가족' : 50, '건강' : 20, '진로' : 60, '마음 건강' : 40, '마음 온도' : 15 ]"
+                     + "5. 마지막은 꿀팁인데, 사용자가 선택한 주제에서 대화가 크게 벗어나지 않게 해주고 무조건적인 예시, 팁을 말하는 빈도를 조금 줄이고 그저 공감을 해주는 말을 할때도 많이 필요해 보이니 참고해줘."
+                    + f"대화 주제 : {categories_text}"
+                    + f"사용자 정보 : 이름 : {user[0]}, 성별 : {user[1]}, 나이 : {user[2]}"
         },
         {
             "role": "user",
@@ -115,6 +124,7 @@ def index():
 def chat():
     user_input = request.json.get("message")
     categories = request.json.get("variables", [])
+    email = session.get('user', {}).get('email')
 
     if not user_input or not categories:
         return jsonify({"error": "메시지와 카테고리가 필요합니다."}), 400
@@ -122,23 +132,38 @@ def chat():
     # OpenAI 응답 생성
     response = generate_response(user_input, categories)
 
-    # 데이터베이스에 사용자 선택 저장
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-    cursor.execute(
-        "INSERT INTO TEST (EMAIL, RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (
-            "test@example.com",
-            1 if "대인관계" in categories else 0,
-            1 if "직장" in categories else 0,
-            1 if "학업" in categories else 0,
-            1 if "가족" in categories else 0,
-            1 if "건강" in categories else 0,
-            1 if "진로" in categories else 0,
-        )
-    )
-    conn.commit()
-    conn.close()
+    # "대화 종료" 메시지가 입력되었는지 확인
+    if user_input.strip() == "대화 종료":
+        try:
+            # 응답 데이터를 JSON 문자열에서 딕셔너리로 변환
+            response_data = json.loads(response)
+
+            # 데이터베이스에 사용자 선택 및 AI 응답 값 저장
+            conn = sqlite3.connect(DATABASE)
+            cursor = conn.cursor()
+
+            cursor.execute(
+                """
+                INSERT INTO TEST (EMAIL, RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    email,
+                    response_data.get("대인 관계", 0),
+                    response_data.get("직장", 0),
+                    response_data.get("학업", 0),
+                    response_data.get("가족", 0),
+                    response_data.get("건강", 0),
+                    response_data.get("진로", 0),
+                )
+            )
+            conn.commit()
+        except json.JSONDecodeError as e:
+            return jsonify({"error": f"응답 데이터 파싱 중 오류 발생: {str(e)}"}), 500
+        except Exception as e:
+            return jsonify({"error": f"DB 저장 중 오류 발생: {str(e)}"}), 500
+        finally:
+            conn.close()
 
     return jsonify({"response": response})
 
