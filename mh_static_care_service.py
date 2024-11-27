@@ -171,45 +171,6 @@ def chat():
     
     return jsonify({"response": response})
 
-@app.route('/mypage/details', methods=['GET'])
-def mypage_details():
-    email = session.get('user', {}).get('email')  # 현재 로그인한 사용자 이메일
-    if not email:
-        return jsonify({"status": "error", "error": "사용자가 로그인되지 않았습니다."}), 403
-
-    try:
-        conn = sqlite3.connect(DATABASE)
-        cursor = conn.cursor()
-
-        # 이메일로 사용자 기록 조회
-        cursor.execute(
-            """
-            SELECT RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE
-            FROM TEST
-            WHERE EMAIL = ?
-            """, (email,)
-        )
-        records = cursor.fetchall()
-        conn.close()
-
-        # 결과를 JSON 형식으로 변환
-        data = [
-            {
-                "대인 관계": record[0],
-                "직장": record[1],
-                "학업": record[2],
-                "가족": record[3],
-                "건강": record[4],
-                "진로": record[5]
-            }
-            for record in records
-        ]
-
-        return jsonify({"status": "success", "data": data})
-
-    except Exception as e:
-        return jsonify({"status": "error", "error": f"DB 오류 발생: {str(e)}"}), 500
-
 # 서버 실행
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5200, debug=True)

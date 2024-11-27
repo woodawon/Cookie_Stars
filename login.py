@@ -82,6 +82,7 @@ def logout():
     # 세션에 저장돼 있는 모든 로그인 정보 다 제거하는 코드 작성할 것.
     return redirect("http://127.0.0.1:5500/templates/index.html")
 
+
 # 서버 실행
 if __name__ == "__main__":
     init_db()  # 데이터베이스 초기화
