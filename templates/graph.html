@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/css/graph.css">
     <link rel="stylesheet" href="/static/css/main_global.css">
     <title>우울증 진단 결과</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="wrap">
@@ -89,7 +90,9 @@
                     <p>하람님의  멘탈 헬스 그래프에요.😊 <br>
                         아래로 스크롤하며 하람님의 상태를 확인해볼까요?</p>
                 </article>
-                <img id="graph" src="/static/images/graph.png">
+                <!-- 데이터를 JSON 형식으로 HTML에 숨김 -->
+                <div id="diagnosisData" style="display: none;">{{ diagnosis | tojson }}</div>
+                <canvas id="diagnosisChart" width="400" height="400"></canvas>
             </article>
         </div>
         <div class="container">
@@ -294,7 +297,7 @@
         <button id="p_tutorial_open">튜토리얼 열기!</button>
     </article>
 
-    <script>
+    <script> 
         document.getElementById("p_finish").addEventListener("click", function () {
             const tutorialDiv = document.getElementById("tutorial");
             tutorialDiv.style.display = "none"; // 튜토리얼 창 숨기기
@@ -307,5 +310,45 @@
             tutorialDiv.style.display = "block"; // 튜토리얼 창 숨기기
         });
     </script>
+    <script>
+        // HTML에서 숨겨진 데이터 읽기
+        const diagnosisDataElement = document.getElementById('diagnosisData');
+        const diagnosisData = JSON.parse(diagnosisDataElement.textContent);
+
+        console.log("Received data:", diagnosisData);
+
+        // 유효한 데이터만 필터링
+        const labels = [];
+        const values = [];
+        for (const [key, value] of Object.entries(diagnosisData)) {
+            if (value > 0) { // 값이 0이 아닌 경우만 추가
+                labels.push(key);
+                values.push(value);
+            }
+        }
+
+        // Chart.js를 사용한 그래프 생성
+        const ctx = document.getElementById('diagnosisChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar', // 막대형 그래프
+            data: {
+                labels: labels, // 진단 항목
+                datasets: [{
+                    label: '진단 결과',
+                    data: values, // 진단 값
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true // y축 0부터 시작
+                    }
+                }
+            }
+        });
+    </script>    
 </body>
 </html>

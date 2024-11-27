@@ -7,12 +7,6 @@ import os
 import sqlite3
 import json
 
-###
-# - 추가 구현 사항 -
-# 1. DB에 저장했으니, 이제 main페이지로 돌아가게 하기.
-# 2. mypage에 들어가면 저장된 DB 내용들을 볼 수 있게 하기. (html 페이지 추가 구현 및 DB 불러와야됨) 
-# ###
-
 # Flask 애플리케이션 생성
 app = Flask(__name__)
 CORS(app)
@@ -36,7 +30,9 @@ def init_db():
             ACADEMIC INTEGER NOT NULL,
             FAMILY INTEGER NOT NULL,
             HEALTH INTEGER NOT NULL,
-            COURSE INTEGER NOT NULL
+            COURSE INTEGER NOT NULL,
+            MHEALTH INTEGER NOT NULL,
+            MTEMP INTEGER NOT NULL
         )
     ''')
     conn.commit()
@@ -133,7 +129,6 @@ def chat():
     # OpenAI 응답 생성
     response = generate_response(user_input, categories)
 
-    # "대화 종료" 메시지가 입력되었는지 확인
     if user_input.strip() == "대화 종료":
         try:
             # 응답 데이터를 JSON 문자열에서 딕셔너리로 변환
@@ -145,8 +140,8 @@ def chat():
 
             cursor.execute(
                 """
-                INSERT INTO TEST (EMAIL, RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO TEST (EMAIL, RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE, MHEALTH, MTEMP)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     email,
@@ -156,9 +151,24 @@ def chat():
                     response_data.get("가족", 0),
                     response_data.get("건강", 0),
                     response_data.get("진로", 0),
+                    response_data.get("마음 건강", 0),
+                    response_data.get("마음 온도", 0),
                 )
             )
             conn.commit()
+
+            # 세션에 진단 결과 저장
+            session["diagnosis"] = {
+                "대인 관계": response_data.get("대인 관계", 0),
+                "직장": response_data.get("직장", 0),
+                "학업": response_data.get("학업", 0),
+                "가족": response_data.get("가족", 0),
+                "건강": response_data.get("건강", 0),
+                "진로": response_data.get("진로", 0),
+                "마음 건강": response_data.get("마음 건강", 0),
+                "마음 온도": response_data.get("마음 온도", 0),
+            }
+
         except json.JSONDecodeError as e:
             return jsonify({"error": f"응답 데이터 파싱 중 오류 발생: {str(e)}"}), 500
         except Exception as e:
@@ -166,10 +176,16 @@ def chat():
         finally:
             conn.close()
 
-        # DB 저장 후 logined_index.html로 이동
-        return jsonify({"status": "redirect", "url": "/logined_index.html"})
-    
+        # 결과 페이지로 리다이렉트
+        return jsonify({"status": "redirect", "url": "/graph"})
+
     return jsonify({"response": response})
+
+@app.route("/graph", methods=["GET"])
+def graph():
+    # 세션에서 진단 결과 가져오기
+    diagnosis = session.get("diagnosis", {})
+    return render_template("graph.html", diagnosis=diagnosis)
 
 # 서버 실행
 if __name__ == "__main__":

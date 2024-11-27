@@ -1,6 +1,6 @@
 roharam_chatbot_service.py == 5100
 mh_static_care_service.py == 5200
-detail_customized_human_care_service.html == 5300
+detail_customized_human_care_service.py == 5300
 login.py == 6100
 register.py == 6200
 mypage.py == 6300

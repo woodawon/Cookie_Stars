@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>사용자 기록</title>
-    <link rel="stylesheet" href="/static/css/details.css" />
-  </head>
-  <body></body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멘탈 헬스 기록</title>
+</head>
+<body>
+    <h1>멘탈 헬스 기록</h1>
+    {% if not data %}
+    <p>기록이 없습니다.</p>
+    {% else %}
+    <ul>
+        {% for record in data %}
+        <li>
+            <p>대인 관계: {{ record["대인 관계"] }}</p>
+            <p>직장: {{ record["직장"] }}</p>
+            <p>학업: {{ record["학업"] }}</p>
+            <p>가족: {{ record["가족"] }}</p>
+            <p>건강: {{ record["건강"] }}</p>
+            <p>진로: {{ record["진로"] }}</p>
+            <p>마음 건강: {{ record["마음 건강"] }}</p>
+            <p>마음 온도: {{ record["마음 온도"] }}</p>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
 </html>

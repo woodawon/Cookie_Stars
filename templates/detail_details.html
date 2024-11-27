@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>사용자 기록</title>
-    <link rel="stylesheet" href="/static/css/details.css" />
-  </head>
-  <body></body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멘탈 헬스 기록</title>
+</head>
+<body>
+    <h1>디테일 휴먼 케어 표 작성 기록</h1>
+    {% if not data %}
+    <p>기록이 없습니다.</p>
+    {% else %}
+    <ul>
+        {% for record in data %}
+        <li>
+            <p>주제: {{ record["주제"] }}</p>
+            <p>제목: {{ record["제목"] }}</p>
+            <p>설계: {{ record["설계"] }}</p>
+            <p>이유: {{ record["이유"] }}</p>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
 </html>

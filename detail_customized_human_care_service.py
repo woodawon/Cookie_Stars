@@ -6,12 +6,6 @@ from flask_cors import CORS
 import os
 import sqlite3
 
-###
-# - 추가 구현 사항 -
-# 1. DB에 저장했으니, 이제 main페이지로 돌아가게 하기.
-# 2. mypage에 들어가면 저장된 DB 내용들을 볼 수 있게 하기. (html 페이지 추가 구현 및 DB 불러와야됨) 
-# ###
-
 # Flask 애플리케이션 생성
 app = Flask(__name__)
 CORS(app)
