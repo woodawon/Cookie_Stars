@@ -1,46 +1,79 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/mypage.css">
-    <link rel="stylesheet" href="/static/css/main_global.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/mypage.css" />
+    <link rel="stylesheet" href="/static/css/main_global.css" />
     <title>mypage</title>
-</head>
-<body>
-    <article class ="circle"></article>
-    <article class ="circle2"></article>
+  </head>
+  <body>
+    <article class="circle"></article>
+    <article class="circle2"></article>
     <a id="exit" href="http://127.0.0.1:6200/logined_index">
-        <img src="/static/images/Exit.png">
+      <img src="/static/images/Exit.png" />
     </a>
     <article class="Personal_information_box">
-        <img id="mypage" src="/static/images/mypage.png">
-        <p id="t_name">이름 : </p>
-        <p id="name">{{ user['name'] }}</p>
-        <p id="t_email">이메일 : </p>
-        <p id="email">{{ user['email'] }}</p>
-        <p id="t_etc">나이/성별 : </p>
-        <p id="etc">{{ user['age'] }} / {{ user['gender'] }}</p>
+      <img id="mypage" src="/static/images/mypage.png" />
+      <p id="t_name">이름 :</p>
+      <p id="name">{{ user['name'] }}</p>
+      <p id="t_email">이메일 :</p>
+      <p id="email">{{ user['email'] }}</p>
+      <p id="t_etc">나이/성별 :</p>
+      <p id="etc">{{ user['age'] }} / {{ user['gender'] }}</p>
     </article>
     <article class="result_box">
-        <p id="result">멘탈 헬스 그래프 결과</p>
-        <!-- 더보기 누르면 멘탈 헬스 진단한 결과 각각 볼 수 있게 DB에서 빼와서 나오게 하기 -->
-        <a id="more" href="#">--더보기--</a>
+      <p id="result">멘탈 헬스 그래프 결과</p>
+      <!-- 더보기 누르면 멘탈 헬스 진단한 결과 각각 볼 수 있게 DB에서 빼와서 나오게 하기 -->
+      <a id="more" href="#" onclick="fetchMentalHealthRecords()">--더보기--</a>
     </article>
     <article class="plan_box">
-        <p id="plan">인생 설계 계획</p>
-        <!-- 더보기 누르면 설계했던 목표(인생 X) 계획 각각 볼 수 있게 DB에서 빼와서 나오게 하기 -->
-        <a id="more2" href="#">--더보기--</a>
-        <article class="graph_box">
-            <p id="graph1">주제</p>
-            <article class="graph2"></article>
-            <p id="graph3">제목</p>
-            <article class="graph4"></article>
-            <p id="graph5">설계</p>
-            <article class="graph6"></article>
-            <p id="graph7">이유</p>
-            <article class="graph8"></article>
-        </article>
+      <p id="plan">인생 설계 계획</p>
+      <!-- 더보기 누르면 설계했던 목표(인생 X) 계획 각각 볼 수 있게 DB에서 빼와서 나오게 하기 -->
+      <a id="more2" href="#">--더보기--</a>
+      <article class="graph_box">
+        <p id="graph1">주제</p>
+        <article class="graph2"></article>
+        <p id="graph3">제목</p>
+        <article class="graph4"></article>
+        <p id="graph5">설계</p>
+        <article class="graph6"></article>
+        <p id="graph7">이유</p>
+        <article class="graph8"></article>
+      </article>
     </article>
-</body>
+    <script>
+      function fetchMentalHealthRecords() {
+        fetch("/mypage/details")
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              const resultsContainer = document.createElement("div");
+              resultsContainer.id = "results-list";
+              resultsContainer.innerHTML = data.data
+                .map(
+                  (record) => `
+                            <div class="record">
+                                <p>대인 관계: ${record["대인 관계"]}</p>
+                                <p>직장: ${record["직장"]}</p>
+                                <p>학업: ${record["학업"]}</p>
+                                <p>가족: ${record["가족"]}</p>
+                                <p>건강: ${record["건강"]}</p>
+                                <p>진로: ${record["진로"]}</p>
+                            </div>
+                        `
+                )
+                .join("");
+              document.body.appendChild(resultsContainer);
+            } else {
+              alert(data.error || "데이터를 가져오는 중 오류가 발생했습니다.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("데이터를 가져오는 중 오류가 발생했습니다.");
+          });
+      }
+    </script>
+  </body>
 </html>

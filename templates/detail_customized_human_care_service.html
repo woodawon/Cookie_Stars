@@ -1,93 +1,149 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>정신적 건강 지속 관리 대화</title>
-    <link rel="stylesheet" href="/static/css/qna_chatbot.css">
-
-</head>
-
-<body>
+    <link rel="stylesheet" href="/static/css/qna_chatbot.css" />
+  </head>
+  <body>
     <div id="app">
-        <header id="header">
-            <img src="/static/images/logo.png" alt="Logo" id="logo">
-            <img src="/static/images/exit.png" alt="Exit" id="exit">
-        </header>
-        <main id="chat-area"></main>
-        <div id="user-input">
-            <textarea id="message-input" rows="1"></textarea>
-            <button id="send-btn">submit</button>
-        </div>
+      <header id="header">
+        <img src="/static/images/logo.png" alt="Logo" id="logo" />
+        <img src="/static/images/exit.png" alt="Exit" id="exit" />
+      </header>
+      <main id="chat-area"></main>
+      <div id="user-input">
+        <textarea id="message-input" rows="1"></textarea>
+        <button id="send-btn">submit</button>
+      </div>
     </div>
     <form id="graph">
-        <p id="p_keyword">주제</p>
-        <textarea type="text" name="keyword" id="keyword"></textarea>
-        <p id="p_title">제목</p>
-        <textarea type="text" name="title" id="title"></textarea>
-        <p id="p_content">설계</p>
-        <textarea type="text" name="content" id="content"></textarea>
-        <p id="p_reason">이유</p>
-        <textarea type="text" name="reason" id="reason"></textarea>
-        <button type="submit" id="done">충분히 다 작성했어요!</button>
+      <p id="p_keyword">주제</p>
+      <textarea type="text" name="keyword" id="keyword"></textarea>
+      <p id="p_title">제목</p>
+      <textarea type="text" name="title" id="title"></textarea>
+      <p id="p_content">설계</p>
+      <textarea type="text" name="content" id="content"></textarea>
+      <p id="p_reason">이유</p>
+      <textarea type="text" name="reason" id="reason"></textarea>
+      <button type="submit" id="done">충분히 다 작성했어요!</button>
     </form>
-
     <article id="tutorial_open">
-        <div id="box_tutorial_open"></div>
-        <img id="img_tutorial_open" src="/static/images/finish_tutorial.png" alt="finish">
-        <button id="p_tutorial_open">튜토리얼 열기!</button>
+      <div id="box_tutorial_open"></div>
+      <img
+        id="img_tutorial_open"
+        src="/static/images/finish_tutorial.png"
+        alt="finish"
+      />
+      <button id="p_tutorial_open">튜토리얼 열기!</button>
     </article>
-
     <script type="module" src="/static/js/detail_mh_static_scripts.js"></script>
-
     <div id="tutorial">
-        <div class="chat-box">
-            <div class="message1">이하람님께서 직접 실험해보고 싶은 것이 무엇인지 <br> 상상해볼까요?</div>
-            <div class="message2">음.. 아직 잘 모르겠어요.</div>
-            <div class="message3">떠오르지 않아도 괜찮아요!</div>
-            <div class="message4">그동안 이하람님께서 겪으신 모든 경험들을 <br> 떠올려보세요.</div>
-            <div class="message5">어떤 사람이 가장 기억에 남으시나요?</div>
+      <div class="chat-box">
+        <div class="message1">
+          이하람님께서 직접 실험해보고 싶은 것이 무엇인지 <br />
+          상상해볼까요?
         </div>
-        <div id="graph_tutorial">
-            <p id="p_keyword_tutorial">주제</p>
-            <textarea type="text" name="keyword" id="keyword_tutorial"></textarea>
-            <p id="p_title_tutorial">제목</p>
-            <textarea type="text" name="title" id="title_tutorial"></textarea>
-            <p id="p_content_tutorial">설계</p>
-            <textarea type="text" name="content" id="content_tutorial"></textarea>
-            <p id="p_reason_tutorial">이유</p>
-            <textarea type="text" name="reason" id="reason_tutorial"></textarea>
-            <button type="submit_tutorial" id="done">충분히 다 작성했어요!</button>
+        <div class="message2">음.. 아직 잘 모르겠어요.</div>
+        <div class="message3">떠오르지 않아도 괜찮아요!</div>
+        <div class="message4">
+          그동안 이하람님께서 겪으신 모든 경험들을 <br />
+          떠올려보세요.
         </div>
-        <p id="talk1">이하람님을 위한 소중한 시간이니 천천히 떠올려보세요. 🥰</p>
-        <p id="talk2"> 어떤 주제가 떠오르시나요? <br> 부담없이 표현해주세요. 🤔</p>
-        <p id="talk3">다 작성하셨나요? <br> 그럼 이제 다음 단계로 같이 넘어가봐요! 💨</p>
-        <div id="highlight1"></div>
-        <div id="highlight2"></div>
-        <div id="highlight3"></div>
-        <div id="finish">
-            <div id="box_finish"></div>
-            <img id="img_finish" src="/static/images/finish_tutorial.png" alt="finish">
-            <button id="p_finish">튜토리얼 완료!</button>
-        </div>
+        <div class="message5">어떤 사람이 가장 기억에 남으시나요?</div>
+      </div>
+      <div id="graph_tutorial">
+        <p id="p_keyword_tutorial">주제</p>
+        <textarea type="text" name="keyword" id="keyword_tutorial"></textarea>
+        <p id="p_title_tutorial">제목</p>
+        <textarea type="text" name="title" id="title_tutorial"></textarea>
+        <p id="p_content_tutorial">설계</p>
+        <textarea type="text" name="content" id="content_tutorial"></textarea>
+        <p id="p_reason_tutorial">이유</p>
+        <textarea type="text" name="reason" id="reason_tutorial"></textarea>
+        <button type="submit_tutorial" id="done">충분히 다 작성했어요!</button>
+      </div>
+      <p id="talk1">이하람님을 위한 소중한 시간이니 천천히 떠올려보세요. 🥰</p>
+      <p id="talk2">
+        어떤 주제가 떠오르시나요? <br />
+        부담없이 표현해주세요. 🤔
+      </p>
+      <p id="talk3">
+        다 작성하셨나요? <br />
+        그럼 이제 다음 단계로 같이 넘어가봐요! 💨
+      </p>
+      <div id="highlight1"></div>
+      <div id="highlight2"></div>
+      <div id="highlight3"></div>
+      <div id="finish">
+        <div id="box_finish"></div>
+        <img
+          id="img_finish"
+          src="/static/images/finish_tutorial.png"
+          alt="finish"
+        />
+        <button id="p_finish">튜토리얼 완료!</button>
+      </div>
     </div>
-
     <script>
-        document.getElementById("p_finish").addEventListener("click", function () {
-            const tutorialDiv = document.getElementById("tutorial");
-            tutorialDiv.style.display = "none"; // 튜토리얼 창 숨기기
+      document
+        .getElementById("p_finish")
+        .addEventListener("click", function () {
+          const tutorialDiv = document.getElementById("tutorial");
+          tutorialDiv.style.display = "none"; // 튜토리얼 창 숨기기
         });
     </script>
-
     <script>
-        document.getElementById("tutorial_open").addEventListener("click", function () {
-            const tutorialDiv = document.getElementById("tutorial");
-            tutorialDiv.style.display = "block"; // 튜토리얼 창 숨기기
+      document
+        .getElementById("tutorial_open")
+        .addEventListener("click", function () {
+          const tutorialDiv = document.getElementById("tutorial");
+          tutorialDiv.style.display = "block"; // 튜토리얼 창 숨기기
         });
     </script>
+    <script>
+      document.getElementById("done").addEventListener("click", (event) => {
+        event.preventDefault(); // 기본 폼 제출 동작 방지
 
+        const theme = document.getElementById("keyword").value.trim();
+        const title = document.getElementById("title").value.trim();
+        const content = document.getElementById("content").value.trim();
+        const reason = document.getElementById("reason").value.trim();
 
-</body>
+        // 필수 데이터 확인
+        if (!theme || !title || !content || !reason) {
+          alert("모든 필드를 작성해 주세요.");
+          return;
+        }
 
+        // 서버로 데이터 전송
+        fetch("/detail", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            theme: theme,
+            title: title,
+            content: content,
+            reason: reason,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "redirect") {
+              // 저장 성공 후 리다이렉트
+              window.location.href = data.url;
+            } else {
+              alert(data.error || "알 수 없는 오류가 발생했습니다.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("저장 중 오류가 발생했습니다. 다시 시도해 주세요.");
+          });
+      });
+    </script>
+  </body>
 </html>

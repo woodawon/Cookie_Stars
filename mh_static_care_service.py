@@ -7,6 +7,12 @@ import os
 import sqlite3
 import json
 
+###
+# - 추가 구현 사항 -
+# 1. DB에 저장했으니, 이제 main페이지로 돌아가게 하기.
+# 2. mypage에 들어가면 저장된 DB 내용들을 볼 수 있게 하기. (html 페이지 추가 구현 및 DB 불러와야됨) 
+# ###
+
 # Flask 애플리케이션 생성
 app = Flask(__name__)
 CORS(app)
@@ -24,7 +30,7 @@ def init_db():
     cursor = conn.cursor() 
     cursor.execute(''' 
         CREATE TABLE IF NOT EXISTS TEST (
-            EMAIL TEXT NOT NULL UNIQUE,
+            EMAIL TEXT NOT NULL,
             RELATIONSHIP INTEGER NOT NULL,
             RECTAL INTEGER NOT NULL,
             ACADEMIC INTEGER NOT NULL,
@@ -72,7 +78,7 @@ def generate_response(prompt, categories):
         {
             "role": "system",
             "content": "1.  아이, 청소년, 20~30대, 40~50대, 노인까지 나누어서 해당 생애 주기의 사람마다 존중 받도록 느끼게 말을 하며 멘탈 헬스 진단을 해주면 돼." 
-                     + "max token = 150으로, 약 150자 내외로 모든 말들을 해주면 돼. 중요한 건, 문장을 150자보다 더 많이 생성했는데, 토큰은 150으로 제한되어 있다 보니까 문장을 그냥 잘라버리는 경우가 아닌, 150자 내외로 모든 말이 다 끝나게 대화를 해줘야 한다는 거야. 또한, 150으로 설정을 했다고 해서, 이 숫자를 의식하여 억지로 글을 더 많이 생성할 필요도 없어. 150자를 넘지 말라는 거지, 글이 더 적은 것 등은 괜찮아."
+                     + "max token = 200으로, 약 200자 내외로 모든 말들을 해주면 돼. 중요한 건, 문장을 200자보다 더 많이 생성했는데, 토큰은 200으로 제한되어 있다 보니까 문장을 그냥 잘라버리는 경우가 아닌, 200자 내외로 모든 말이 다 끝나게 대화를 해줘야 한다는 거야. 또한, 200으로 설정을 했다고 해서, 이 숫자를 의식하여 억지로 글을 더 많이 생성할 필요도 없어. 150자를 넘지 말라는 거지, 글이 더 적은 것 등은 괜찮아."
                      + "2. 카테고리에 따라 관련된 질문을 해야 해. 대인 관계, 직장, 학업, 가족, 건강, 진로 중에서 사용자는 원하는 만큼 선택할 것이고 GPT는 선택한 것에 관련된 질문과 답변을 해줘. 추가적으로 현실적인 해결 방안보다는 상대방을 이해하고 대안을 스스로 찾을 수 있도록 하는 것에 초점을 맞춰줘. 그리고 정말 중요한 것은, 대화가 시작될 때 사용자가 어떤 카테고리를 선택했는지, 그리고 사용자에 대한 정보가 입력 예시처럼 무조껀 너에게 사용자 프롬프트에 입력되어 전송될 거라는 거야. 입력 예시처럼 전송된 값을 보고, 선택된 카테고리와 관련된 멘탈 헬스 진단을 해주면 돼. 입력 예시는 다음과 같아."
                      + "입력 예시 : "
                      + "대화 주제 : 대인 관계, 직장, 학업, 가족, 건강, 진로"
@@ -115,11 +121,6 @@ def generate_response(prompt, categories):
         return f"오류가 발생했습니다: {str(e)}"
 
 # 기본 라우트
-@app.route("/")
-def index():
-    return render_template("mh_static_care_service.html")
-
-# 채팅 라우트
 @app.route("/mh_static_chat", methods=["POST"])
 def chat():
     user_input = request.json.get("message")
@@ -165,7 +166,49 @@ def chat():
         finally:
             conn.close()
 
+        # DB 저장 후 logined_index.html로 이동
+        return jsonify({"status": "redirect", "url": "/logined_index.html"})
+    
     return jsonify({"response": response})
+
+@app.route('/mypage/details', methods=['GET'])
+def mypage_details():
+    email = session.get('user', {}).get('email')  # 현재 로그인한 사용자 이메일
+    if not email:
+        return jsonify({"status": "error", "error": "사용자가 로그인되지 않았습니다."}), 403
+
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cursor = conn.cursor()
+
+        # 이메일로 사용자 기록 조회
+        cursor.execute(
+            """
+            SELECT RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE
+            FROM TEST
+            WHERE EMAIL = ?
+            """, (email,)
+        )
+        records = cursor.fetchall()
+        conn.close()
+
+        # 결과를 JSON 형식으로 변환
+        data = [
+            {
+                "대인 관계": record[0],
+                "직장": record[1],
+                "학업": record[2],
+                "가족": record[3],
+                "건강": record[4],
+                "진로": record[5]
+            }
+            for record in records
+        ]
+
+        return jsonify({"status": "success", "data": data})
+
+    except Exception as e:
+        return jsonify({"status": "error", "error": f"DB 오류 발생: {str(e)}"}), 500
 
 # 서버 실행
 if __name__ == "__main__":
