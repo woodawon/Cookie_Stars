@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     exitImg.addEventListener('click', () => {
-        window.location.href = 'http://127.0.0.1:5500/html/logined_index.html'; // 메인 페이지로 이동
+        window.location.href = 'http://127.0.0.1:6200/logined_index'; // 메인 페이지로 이동
     });
 
     // 메시지 입력창의 동적 크기 조정

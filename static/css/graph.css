@@ -1637,3 +1637,10 @@ body {
     height: auto;
     z-index: 5;
 }
+
+#exit {
+ position: absolute;
+ top: 5%;  
+ left: 1.5%;
+ cursor: pointer;
+}
