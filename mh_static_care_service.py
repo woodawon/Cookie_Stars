@@ -51,6 +51,7 @@ urls = [
 
 # 모든 URL의 HTML 데이터를 BeautifulSoup 객체로 변환
 html_contents = [fetch_html(url) for url in urls]
+categories = []
 
 # OpenAI GPT-4 API 호출 함수
 def generate_response(prompt, categories):
@@ -116,76 +117,74 @@ def generate_response(prompt, categories):
     except Exception as e:
         return f"오류가 발생했습니다: {str(e)}"
 
+@app.route('/')
+def index():
+    return render_template("mh_static_care_service.html")
+
 # 기본 라우트
 @app.route("/mh_static_chat", methods=["POST"])
 def chat():
     user_input = request.json.get("message")
-    categories = request.json.get("variables", [])
     email = session.get('user', {}).get('email')
-
-    if not user_input or not categories:
-        return jsonify({"error": "메시지와 카테고리가 필요합니다."}), 400
 
     # OpenAI 응답 생성
     response = generate_response(user_input, categories)
 
-    if user_input.strip() == "대화 종료":
-        try:
-            # 응답 데이터를 JSON 문자열에서 딕셔너리로 변환
-            response_data = json.loads(response)
+    if isinstance(response, str):  # 응답이 문자열인지 확인
+        if user_input.strip() == "대화 종료":
+            try:
+                # 응답 데이터를 JSON 문자열에서 딕셔너리로 변환
+                response_data = json.loads(response)
 
-            # 데이터베이스에 사용자 선택 및 AI 응답 값 저장
-            conn = sqlite3.connect(DATABASE)
-            cursor = conn.cursor()
+                # 데이터베이스에 사용자 선택 및 AI 응답 값 저장
+                conn = sqlite3.connect(DATABASE)
+                cursor = conn.cursor()
 
-            cursor.execute(
-                """
-                INSERT INTO TEST (EMAIL, RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE, MHEALTH, MTEMP)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """,
-                (
-                    email,
-                    response_data.get("대인 관계", 0),
-                    response_data.get("직장", 0),
-                    response_data.get("학업", 0),
-                    response_data.get("가족", 0),
-                    response_data.get("건강", 0),
-                    response_data.get("진로", 0),
-                    response_data.get("마음 건강", 0),
-                    response_data.get("마음 온도", 0),
+                cursor.execute(
+                    """
+                    INSERT INTO TEST (EMAIL, RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE, MHEALTH, MTEMP)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        email,
+                        response_data.get("대인 관계", 0),
+                        response_data.get("직장", 0),
+                        response_data.get("학업", 0),
+                        response_data.get("가족", 0),
+                        response_data.get("건강", 0),
+                        response_data.get("진로", 0),
+                        response_data.get("마음 건강", 0),
+                        response_data.get("마음 온도", 0),
+                    )
                 )
-            )
-            conn.commit()
+                conn.commit()
 
-            # 세션에 진단 결과 저장
-            session["diagnosis"] = {
-                "대인 관계": response_data.get("대인 관계", 0),
-                "직장": response_data.get("직장", 0),
-                "학업": response_data.get("학업", 0),
-                "가족": response_data.get("가족", 0),
-                "건강": response_data.get("건강", 0),
-                "진로": response_data.get("진로", 0),
-                "마음 건강": response_data.get("마음 건강", 0),
-                "마음 온도": response_data.get("마음 온도", 0),
-            }
+                # 세션에 진단 결과 저장
+                session["diagnosis"] = {
+                    "대인 관계": response_data.get("대인 관계", 0),
+                    "직장": response_data.get("직장", 0),
+                    "학업": response_data.get("학업", 0),
+                    "가족": response_data.get("가족", 0),
+                    "건강": response_data.get("건강", 0),
+                    "진로": response_data.get("진로", 0),
+                    "마음 건강": response_data.get("마음 건강", 0),
+                    "마음 온도": response_data.get("마음 온도", 0),
+                }
 
-        except json.JSONDecodeError as e:
-            return jsonify({"error": f"응답 데이터 파싱 중 오류 발생: {str(e)}"}), 500
-        except Exception as e:
-            return jsonify({"error": f"DB 저장 중 오류 발생: {str(e)}"}), 500
-        finally:
-            conn.close()
+            except json.JSONDecodeError as e:
+                return jsonify({"error": f"응답 데이터 파싱 중 오류 발생: {str(e)}"}), 500
+            except Exception as e:
+                return jsonify({"error": f"DB 저장 중 오류 발생: {str(e)}"}), 500
+            finally:
+                conn.close()
 
-        # 결과 페이지로 리다이렉트
-        return jsonify({"status": "redirect", "url": "/graph"})
+            # 결과 페이지로 리다이렉트
+            return render_template("graph.html")
 
-    return jsonify({"response": response})
-
-@app.route("/graph", methods=["GET"])
-def graph():
-    # 세션에서 진단 결과 가져오기
-    diagnosis = session.get("diagnosis", {})
-    return render_template("graph.html", diagnosis=diagnosis)
+        # 일반적인 응답 반환
+        return jsonify({"response": response})
+    else:  # JSON 직렬화 불가능한 경우
+        return jsonify({"error": "OpenAI 응답이 JSON 직렬화할 수 없는 형식입니다."}), 500
 
 # 서버 실행
 if __name__ == "__main__":

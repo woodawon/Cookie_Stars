@@ -9,6 +9,7 @@ import sqlite3
 # Flask 애플리케이션 생성
 app = Flask(__name__)
 CORS(app)
+openai.api_key = ""
 app.secret_key = ""  # 세션 데이터를 암호화하기 위한 키
 
 # SQLite3 데이터베이스 파일 경로 설정
@@ -126,7 +127,6 @@ def generate_response(prompt, categories):
 def index():
     return render_template('detail_customized_human_care_service.html')
 
-# 회원가입 라우트 -> 디테일 내용 DB에 저장하는 걸로 변경하는 작업 실행.
 @app.route('/detail', methods=['POST'])
 def detail():
     email = session.get('user', {}).get('email')
