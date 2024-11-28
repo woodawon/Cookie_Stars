@@ -156,7 +156,7 @@ def detail():
         conn.commit()  # 변경사항 저장
 
         # 저장 완료 후 logined_index.html로 리다이렉트
-        return jsonify({"status": "redirect", "url": "/logined_index.html"})
+        return jsonify({"status": "redirect", "url": "http://127.0.0.1:6200/logined_index"})
 
     except sqlite3.IntegrityError:
         return jsonify({"status": "error", "error": "이미 등록된 이메일입니다."}), 400
