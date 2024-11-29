@@ -54,7 +54,7 @@ def signup():
         
         # 데이터 삽입
         cursor.execute('''
-            INSERT INTO USERS (PASSWORD, NAME, EMAIL, AGE, GENDER)
+            INSERT INTO USER (PASSWORD, NAME, EMAIL, AGE, GENDER)
             VALUES (?, ?, ?, ?, ?)
         ''', (password, name, email, age, gender))
         

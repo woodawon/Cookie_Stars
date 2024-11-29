@@ -48,7 +48,7 @@ def login():
         conn = sqlite3.connect(DATABASE)
         cursor = conn.cursor()
         cursor.execute(
-            """SELECT NAME, EMAIL, AGE, GENDER FROM USERS WHERE EMAIL=? AND PASSWORD=?""", (email, password)
+            """SELECT NAME, EMAIL, AGE, GENDER FROM USER WHERE EMAIL=? AND PASSWORD=?""", (email, password)
         )
         user = cursor.fetchone()
         if user:

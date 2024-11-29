@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 # OpenAI API 키 설정
 openai.api_key = ''
+fixed = ""
 
 # 웹 페이지에서 HTML 데이터를 가져와 BeautifulSoup 객체로 변환
 def fetch_html(url):
@@ -33,7 +34,7 @@ urls = [
 html_contents = [fetch_html(url) for url in urls]
 
 # OpenAI GPT-4 API 호출 함수
-def generate_response(user_input, cmselect):
+def generate_response(user_input):
 
     # 메시지 히스토리 초기화
     msg_history = [
@@ -51,11 +52,10 @@ def generate_response(user_input, cmselect):
             {"type": "text", "text" : " 3. 연고 비타민 비타민 : 상처 나고 지친 마음에 연고를 발라 새살이 돋는 것처럼 케어와 힐링을 받고 싶을 때 선택하는 대화 컨셉."},
             {"type": "text", "text" : " 4. max token = 200으로, 약 200자 내외로 모든 말들을 해주면 됩니다. 중요한 건, 문장을 200자보다 더 많이 생성했는데, 토큰은 200으로 제한되어 있다 보니까 문장을 그냥 잘라버리는 경우가 아닌, 200자 내외로 모든 말이 다 끝나게 대화를 해줘야 한다는 겁니다. 또한, 200으로 설정을 했다고 해서, 이 숫자를 의식하여 억지로 글을 더 많이 생성할 필요도 없습니다. 150자를 넘지 말라는 거지, 글이 더 적은 것 등은 괜찮습니다."},
             {"type": "text", "text": " 5. 사용자가 대화 종료 라고 입력해야 대화가 종료됩니다."},
-            {"type": "text", "text": f"대화 컨셉 : {cmselect}"},
+            {"type": "text", "text": f"대화 컨셉 : {fixed}"},
         ]}
     ]
-
-    msg_history.append({"role": "user", "content": user_input})
+    
     try:
         response = openai.ChatCompletion.create(
             model="gpt-4o",
@@ -81,17 +81,19 @@ def index():
 # 채팅 라우트
 @app.route('/roharam_chat', methods=['POST'])
 def chat():
+    global fixed
     user_input = request.json.get('message')
     cmselect = request.json.get('variable')  # HTTP 요청 내에서 'variable' 값 가져오기
+    fixed = cmselect
     if not user_input:
         return jsonify({"error": "메시지가 필요합니다."}), 400
     
     if user_input.strip() == "대화 종료":
         return render_template('logined_index.html')
 
-    print(f"Selected conversation theme: {cmselect}")
+    print(f"Selected conversation theme: {fixed}")
 
-    response = generate_response(user_input, cmselect)
+    response = generate_response(user_input)
     return jsonify({"response": response})
 
 # 서버 실행

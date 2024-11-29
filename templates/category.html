@@ -21,7 +21,7 @@
     }
 
     function send() {
-        fetch('http://127.0.0.1:5200/', {
+        fetch('http://127.0.0.1:5200/start', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,8 +35,8 @@
                 return response.json();
             })
             .then(data => {
-                console.log('Response from Python:', data);
-                window.location.href = 'http://127.0.0.1:5200/mh'; // 여기로 이동
+                console.log('Response from Python:', data.response);
+                window.location.href = 'http://127.0.0.1:5200'; // 여기로 이동
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -104,5 +104,4 @@
         });
     </script>
 </body>
-
 </html>

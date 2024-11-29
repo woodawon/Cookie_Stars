@@ -17,7 +17,7 @@ app.secret_key = ""  # 세션 데이터를 암호화하기 위한 키
 
 # SQLite3 데이터베이스 파일 경로 설정
 DATABASE = os.path.join('db', 'C:\\Users\\choro\\cookiestars\\database.db')
-
+ 
 # 데이터베이스 초기화 함수
 def init_db():
     conn = sqlite3.connect(DATABASE)
@@ -51,12 +51,12 @@ urls = [
 
 # 모든 URL의 HTML 데이터를 BeautifulSoup 객체로 변환
 html_contents = [fetch_html(url) for url in urls]
-categories = []
+fixed = []
 
 # OpenAI GPT-4 API 호출 함수
-def generate_response(prompt, categories):
+def generate_response(prompt):
     # 다중 카테고리를 하나의 문자열로 변환
-    categories_text = ", ".join(categories)
+    categories_text = ", ".join(fixed)
     email = session.get('user', {}).get('email')
 
     try:
@@ -66,6 +66,8 @@ def generate_response(prompt, categories):
             """SELECT NAME, AGE, GENDER FROM USERS WHERE EMAIL=?""", (email)
         )
         user = cursor.fetchone()
+        print(f"대화 주제 : {categories_text}")
+        print(f"사용자 정보 : {user[0]}, {user[1]}, {user[2]}")
     except Exception as e:
         return jsonify({"status": "error", "error": f"DB 오류 발생: {str(e)}"}), 500
     finally:
@@ -121,6 +123,13 @@ def generate_response(prompt, categories):
 def index():
     return render_template("mh_static_care_service.html")
 
+@app.route('/start', methods=["POST"])
+def start():
+    global fixed
+    categories = request.json.get("variables", [])
+    fixed = categories
+    return jsonify({"response": "start"})
+
 # 기본 라우트
 @app.route("/mh_static_chat", methods=["POST"])
 def chat():
@@ -128,7 +137,7 @@ def chat():
     email = session.get('user', {}).get('email')
 
     # OpenAI 응답 생성
-    response = generate_response(user_input, categories)
+    response = generate_response(user_input)
 
     if isinstance(response, str):  # 응답이 문자열인지 확인
         if user_input.strip() == "대화 종료":
@@ -179,12 +188,17 @@ def chat():
                 conn.close()
 
             # 결과 페이지로 리다이렉트
-            return render_template("graph.html")
+            return jsonify({"response": "result"})
 
         # 일반적인 응답 반환
         return jsonify({"response": response})
     else:  # JSON 직렬화 불가능한 경우
         return jsonify({"error": "OpenAI 응답이 JSON 직렬화할 수 없는 형식입니다."}), 500
+
+@app.route('/graph')
+def graph():
+    diagnosis = session.get('diagnosis', {})
+    return render_template('graph.html', diagnosis=diagnosis)
 
 # 서버 실행
 if __name__ == "__main__":
