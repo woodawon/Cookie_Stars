@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageInput.value = '';
 
             // 서버로 메시지 전송
-            fetch('/roharam_chat', {
+            fetch('http://127.0.0.1:5100/roharam_chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(response => response.json())
             .then(data => {
+                if (data.response === "exit") {
+                    window.location.href = "http://127.0.0.1:6200/logined_index";
+                }
                 const chatbotMessage = ChatMessage({ sender: 'chatbot', text: data.response });
                 chatArea.insertAdjacentHTML('beforeend', chatbotMessage);
                 scrollToBottom(); // 스크롤을 아래로 이동

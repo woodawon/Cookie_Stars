@@ -13,7 +13,7 @@ openai.api_key = ""
 app.secret_key = ""  # 세션 데이터를 암호화하기 위한 키
 
 # SQLite3 데이터베이스 파일 경로 설정
-DATABASE = os.path.join('db', 'C:\\Users\\choro\\cookiestars\\database.db')
+DATABASE = os.path.join("db", "C:\\Users\\MASTER\\cookiestars\\database.db")
 
 @app.route('/mypage/mh_static_care_service', methods=['GET'])
 def mh_static_care_service():
@@ -28,7 +28,7 @@ def mh_static_care_service():
         # 이메일로 사용자 기록 조회
         cursor.execute(
             """
-            SELECT RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE
+            SELECT RELATIONSHIP, RECTAL, ACADEMIC, FAMILY, HEALTH, COURSE, MHEALTH, MTEMP
             FROM TEST
             WHERE EMAIL = ?
             """, (email,)
@@ -44,7 +44,9 @@ def mh_static_care_service():
                 "학업": record[2],
                 "가족": record[3],
                 "건강": record[4],
-                "진로": record[5]
+                "진로": record[5],
+                "마음 건강": record[6],
+                "마음 온도": record[7]
             }
             for record in records
         ]

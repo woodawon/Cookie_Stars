@@ -31,29 +31,38 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          message: messageText,
-        }), // variable도 함께 전송
+        body: JSON.stringify({ message: messageText }),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.response == "result") {
-            window.location.href = "http://127.0.0.1:5200/graph";
+        .then((response) => {
+          if (!response.ok) {
+            console.error(
+              "서버 응답 오류:",
+              response.status,
+              response.statusText
+            );
+            throw new Error(`서버 오류: ${response.status}`);
           }
-          const chatbotMessage = ChatMessage({
-            sender: "chatbot",
-            text: data.response,
-          });
-          chatArea.insertAdjacentHTML("beforeend", chatbotMessage);
-          scrollToBottom(); // 스크롤을 아래로 이동
+          return response.json();
+        })
+        .then((data) => {
+          console.log("서버 응답 데이터:", data);
+          if (data.response === "result") {
+            window.location.href = "http://127.0.0.1:5200/graph";
+          } else {
+            const chatbotMessage = ChatMessage({
+              sender: "chatbot",
+              text: data.response,
+            });
+            chatArea.insertAdjacentHTML("beforeend", chatbotMessage);
+          }
         })
         .catch((error) => {
+          console.error("오류 발생:", error);
           const chatbotMessage = ChatMessage({
             sender: "chatbot",
             text: "오류가 발생했습니다. 다시 시도해 주세요.",
           });
           chatArea.insertAdjacentHTML("beforeend", chatbotMessage);
-          scrollToBottom(); // 스크롤을 아래로 이동
         });
 
       scrollToBottom();

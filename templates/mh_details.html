@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/mh_details.css" type="text/css" rel="stylesheet" />
     <title>멘탈 헬스 기록</title>
 </head>
 <body>
@@ -10,21 +11,75 @@
     {% if not data %}
     <p>기록이 없습니다.</p>
     {% else %}
-    <ul>
-        {% for record in data %}
-        <li>
-            <p>대인 관계: {{ record["대인 관계"] }}</p>
-            <p>직장: {{ record["직장"] }}</p>
-            <p>학업: {{ record["학업"] }}</p>
-            <p>가족: {{ record["가족"] }}</p>
-            <p>건강: {{ record["건강"] }}</p>
-            <p>진로: {{ record["진로"] }}</p>
-            <p>마음 건강: {{ record["마음 건강"] }}</p>
-            <p>마음 온도: {{ record["마음 온도"] }}</p>
-        </li>
-        <hr>
-        {% endfor %}
+    <div id="diagnosisData" style="display: none">{{ data|tojson }}</div>
+    <ul id="chartsContainer">
+        <!-- 여기서 JavaScript를 통해 그래프가 추가됩니다 -->
     </ul>
     {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // 서버에서 전달된 데이터
+        const diagnosisDataElement = document.getElementById("diagnosisData");
+        const records = JSON.parse(diagnosisDataElement.textContent);
+
+        // 그래프를 위한 설정
+        const labels = ["대인 관계", "직장", "학업", "가족", "건강", "진로", "마음 건강", "마음 온도"];
+
+        // 각 데이터 레코드마다 그래프 생성
+        const chartsContainer = document.getElementById('chartsContainer');
+        records.forEach((record, index) => {
+            // 리스트 요소 생성
+            const listItem = document.createElement('li');
+            
+            // 캔버스 생성
+            const canvas = document.createElement('canvas');
+            canvas.id = `chart-${index}`;
+            listItem.appendChild(canvas);
+
+            // 리스트에 추가
+            chartsContainer.appendChild(listItem);
+
+            // Chart.js 그래프 생성
+            const ctx = canvas.getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: `기록 ${index + 1}`,
+                        data: [
+                            record["대인 관계"],
+                            record["직장"],
+                            record["학업"],
+                            record["가족"],
+                            record["건강"],
+                            record["진로"],
+                            record["마음 건강"],
+                            record["마음 온도"]
+                        ],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

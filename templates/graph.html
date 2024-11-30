@@ -22,7 +22,7 @@
                 </article>
                 <!-- 데이터를 JSON 형식으로 HTML에 숨김 -->
                 <div id="diagnosisData" style="display: none;">{{ diagnosis | tojson }}</div>
-                <canvas id="diagnosisChart" width="400" height="400"></canvas>
+                <canvas id="diagnosisChart" width="300" height="300"></canvas>
             </article>
         </div>
         <div class="container">
@@ -272,13 +272,21 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false, // 화면 크기에 따라 그래프 비율 조정
                 scales: {
                     y: {
-                        beginAtZero: true // y축 0부터 시작
+                        beginAtZero: true
                     }
                 }
             }
         });
     </script>    
+    <script>
+        const exitImg = document.getElementById("exit");
+        exitImg.addEventListener("click", () => {
+            window.location.href = "http://127.0.0.1:6200/logined_index"; // 메인 페이지로 이동
+        });
+    </script>
 </body>
 </html>

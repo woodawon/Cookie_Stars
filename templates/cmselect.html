@@ -14,10 +14,11 @@
             value = str;
             window.setValue(value);  // 선택된 값을 전역 변수로 설정
         }
+        console.log("대화 컨셉 : " + value);
     }
 
     function send() {
-        fetch('http://127.0.0.1:5100/roharam_chat', {
+        fetch('http://127.0.0.1:5100/start', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,7 +45,7 @@
     <div class="circle"></div>
     <div class="circle2"></div>
     <a id="exit" href="#">
-        <img src="/static/images/exit.png" alt="exit"></div>
+        <img src="/static/images/exit.png" alt="exit" id="exit"></div>
     </a>
     <img id="logo" src="/static/images/하람로고+하람.png" alt="logo"></div>
     <form>
@@ -90,6 +91,12 @@
         document.getElementById("tutorial_open").addEventListener("click", function () {
             const tutorialDiv = document.getElementById("tutorial");
             tutorialDiv.style.display = "block"; // 튜토리얼 창 숨기기
+        });
+    </script>
+    <script>
+        const exitImg = document.getElementById("exit");
+        exitImg.addEventListener("click", () => {
+            window.location.href = "http://127.0.0.1:6200/logined_index"; // 메인 페이지로 이동
         });
     </script>
 </body>

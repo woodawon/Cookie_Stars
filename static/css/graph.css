@@ -1644,3 +1644,9 @@ body {
  left: 1.5%;
  cursor: pointer;
 }
+
+#diagnosisChart {
+    max-width: 1500px; /* 원하는 너비 */
+    max-height: 800px; /* 원하는 높이 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
